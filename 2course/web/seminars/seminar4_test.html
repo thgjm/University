@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seminar4</title>
+
+    <style>
+      body {
+        min-height: 100vh;
+        margin: 0px;
+        background: center / cover no-repeat
+          url(https://images.pexels.com/photos/1629236/pexels-photo-1629236.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+      }
+      .OtterBlock,
+      .SealBlock {
+        width: 200px;
+        border: red 5px solid;
+        padding: 15px;
+        display: inline-block;
+        margin: 10px;
+        vertical-align: top;
+      }
+
+      .SealBlock {
+        width: 400px;
+        background: linear-gradient(to right top, white, rgb(255, 213, 220));
+      }
+
+      .SealContent {
+        width: 100%;
+      }
+
+      .SealText {
+        margin: 0px;
+        font-size: 13px;
+      }
+
+      .OtterImg {
+        width: 100%;
+        border: gray solid 2px;
+        box-sizing: border-box;
+      }
+
+      .SealImg {
+        width: 250px;
+        border: gray solid 2px;
+        box-sizing: border-box;
+        display: inline-block;
+        object-fit: contain;
+        float: left;
+        margin: 0px 10px 0px 0px;
+      }
+
+      .OtterInfo button {
+        display: block;
+        margin-top: 5px;
+        padding: 5px;
+        width: 100%;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        border: 1px black solid;
+        border-radius: 5px;
+        background-color: pink;
+      }
+
+      .OtterInfo button:hover,
+      .SealInfo button:hover {
+        color: pink;
+        background-color: black;
+      }
+
+      .OtterInfo button:active,
+      .SealInfo button:active {
+        color: black;
+        background-color: lightblue;
+      }
+
+      .SealInfo {
+        background-color: lightgrey;
+        border: 1px black dashed;
+        border-radius: 5px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+      }
+
+      .SealInfo button {
+        flex: 1;
+        padding: 5px;
+        font-size: 12px;
+        border: 1px black solid;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="MainContainer">
+      <div class="OtterBlock">
+        <img
+          class="OtterImg"
+          src="https://www.shutterstock.com/image-photo/sea-otter-enhydra-lutris-600nw-2398038403.jpg"
+          alt="otter"
+        />
+
+        <div class="OtterInfo">
+          <button class="AboutOtters">Abbout Otters</button>
+          <button class="OtterImageBtn">Image</button>
+          <button class="OtterMore">More</button>
+        </div>
+      </div>
+
+      <div class="SealBlock">
+        <div class="SealInfo">
+          <button class="AboutSeals">Abbout Seals</button>
+          <button class="SealImageBtn">Image</button>
+          <button class="SealMore">More</button>
+        </div>
+        <div class="SealContent">
+          <img
+            class="SealImg"
+            src="https://www.telegraph.co.uk/content/dam/news/2016/11/16/seal_trans_NvBQzQNjv4BqRtvZRSV037_kYj9aGppl8KoSQRPSZoKNSSXquGEEDe0.jpg?imwidth=680"
+            alt="seal"
+          />
+          <div class="SealText">
+            <p>
+              Seals are marine mammals that belong to the pinniped family. They
+              are well adapted to life in the water, with streamlined bodies and
+              strong flippers. Seals can be found in both Arctic and Antarctic
+              regions, as well as temperate oceans around the world. Their thick
+              layer of blubber keeps them warm in cold waters.
+            </p>
+            <p>
+              Many species of seals are social animals, living in large
+              colonies. However, some, like the leopard seal, prefer solitary
+              life. Seals primarily feed on fish and squid, using their sharp
+              teeth to catch prey.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

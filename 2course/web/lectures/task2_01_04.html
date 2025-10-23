@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task2</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+  <style type="text/css">
+    .col-form-label {
+      width: 100px;
+    }
+
+    select, input {
+      height: 40px;
+    }
+
+    td,
+    th {
+      vertical-align: middle;
+    }
+
+    .table-hover tbody tr {
+      transition: background-color 0.15s;
+    }
+
+    .table-hover tbody tr:hover td {
+      background-color: #afffda;
+      transition: background-color 0.15s;
+    }
+
+    td:last-child {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="container pt-5">
+    <form class="form-inline">
+      <div class="row">
+        <div class="col-sm-12 sol-md-12 col-lg-6">
+          <div class="input-group mb-3">
+            <label class="col-form-label me-3">Filter</label>
+            <input type="text" class="form-control" placeholder="Type to Search" style="border-radius:5px;">
+            <button class="btn btn-secondary" type="button">Clear</button>
+          </div>
+        </div>
+        <div class="col-sm-12 sol-md-12 col-lg-6">
+          <div class="input-group mb-3">
+            <label class="col-form-label me-3">Sort</label>
+            <select class="form-control form-select" style="width:300px; border-radius:5px;">
+              <option selected>-- none --</option>
+            </select>
+            <select class="form-select" disabled style="border-radius:5px;">
+              <option selected>Asc</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 sol-md-12 col-lg-6">
+          <div class="input-group mb-3">
+            <label class="col-form-label me-3">Sort direction</label>
+            <select class="form-select col-auto" style="max-width:100px; border-radius:5px;">
+              <option selecte>Asc</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 sol-md-12 col-lg-6">
+          <div class="input-group mb-3">
+            <label class="col-form-label me-3">Per page</label>
+            <select class="form-select" style="border-radius:5px;">
+              <option selected>5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" style="width:270px;">Person Full name</th>
+          <th scope="col" style="width:10px;">&uarr;&darr;</th>
+          <th class="text-center" scope="col">Person age</th>
+          <th scope="col">&uarr;&darr;</th>
+          <th scope="col">is Active</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Dickerson Macdonald</th>
+          <td></td>
+          <td class="text-center">40</td>
+          <td></td>
+          <td>Yes :)</td>
+          <td>
+            <button type="button" class="btn btn-secondary">Info modal</button>
+            <button type="button" class="btn btn-secondary">Show details</button>
+          </td>
+        </tr>
+        <tr mt-2>
+          <td scope="row">Larsen Shaw</th>
+          <td></td>
+          <td class="text-center">21</td>
+          <td></td>
+          <td>No :(</td>
+          <td>
+            <button type="button" class="btn btn-secondary">Info modal</button>
+            <button type="button" class="btn btn-secondary">Show details</button>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Mini Navarro</th>
+          <td></td>
+          <td class="text-center">9</td>
+          <td></td>
+          <td>No :(</td>
+          <td>
+            <button type="button" class="btn btn-secondary">Info modal</button>
+            <button type="button" class="btn btn-secondary">Show details</button>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Geneva Wilson</th>
+          <td></td>
+          <td class="text-center">89</td>
+          <td></td>
+          <td>No :(</td>
+          <td>
+            <button type="button" class="btn btn-secondary">Info modal</button>
+            <button type="button" class="btn btn-secondary">Show details</button>
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Jami Carney</th>
+          <td></td>
+          <td class="text-center">38</td>
+          <td></td>
+          <td>Yes :)</td>
+          <td>
+            <button type="button" class="btn btn-secondary">Info modal</button>
+            <button type="button" class="btn btn-secondary">Show details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link">&laquo;</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">&lt;</a>
+        </li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+        <li class="page-item disabled">
+          <a class="page-link" href="#">&raquo;</a>
+        </li>
+      </ul>
+  </div>
+</body>
+
+</html>

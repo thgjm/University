@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+  </head>
+  <body>
+    <script>
+      function getQuarter(x, y) {
+        if (x === 0 && y === 0) return "початок координат";
+        if (x === 0) return "на осі Y";
+        if (y === 0) return "на осі X";
+        if (x > 0 && y > 0) return "1 чверть";
+        if (x < 0 && y > 0) return "2 чверть";
+        if (x < 0 && y < 0) return "3 чверть";
+        if (x > 0 && y < 0) return "4 чверть";
+      }
+
+      function getDistance(p1, p2) {
+        return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2).toFixed(2);
+      }
+
+      function funcDeclaration(p1, p2) {
+        console.log("Function Declaration");
+        console.log(`Точка A: (${p1.x}, ${p1.y})`);
+        console.log(`Точка B: (${p2.x}, ${p2.y})`);
+        const q1 = getQuarter(p1.x, p1.y);
+        const q2 = getQuarter(p2.x, p2.y);
+
+        if (q1 === q2 && typeof q1 === "number") {
+          const dist = getDistance(p1, p2);
+          console.log(
+            `Точки в одній чверті (${q1}). Відстань між ними: ${dist}`
+          );
+        } else {
+          console.log(`Точка A знаходиться: ${q1}`);
+          console.log(`Точка B знаходиться: ${q2}`);
+        }
+      }
+      const funcExpression = function (p1, p2) {
+        console.log("Function Expression");
+        console.log(`Точка A: (${p1.x}, ${p1.y})`);
+        console.log(`Точка B: (${p2.x}, ${p2.y})`);
+        const q1 = getQuarter(p1.x, p1.y);
+        const q2 = getQuarter(p2.x, p2.y);
+
+        if (q1 === q2 && typeof q1 === "number") {
+          const dist = getDistance(p1, p2);
+          console.log(
+            `Точки в одній чверті (${q1}). Відстань між ними: ${dist}`
+          );
+        } else {
+          console.log(`Точка A знаходиться: ${q1}`);
+          console.log(`Точка B знаходиться: ${q2}`);
+        }
+      };
+      const funcArrow = (p1, p2) => {
+        console.log("Arrow Function");
+        console.log(`Точка A: (${p1.x}, ${p1.y})`);
+        console.log(`Точка B: (${p2.x}, ${p2.y})`);
+        const q1 = getQuarter(p1.x, p1.y);
+        const q2 = getQuarter(p2.x, p2.y);
+
+        if (q1 === q2 && typeof q1 === "number") {
+          const dist = getDistance(p1, p2);
+          console.log(
+            `Точки в одній чверті (${q1}). Відстань між ними: ${dist}`
+          );
+        } else {
+          console.log(`Точка A знаходиться: ${q1}`);
+          console.log(`Точка B знаходиться: ${q2}`);
+        }
+      };
+
+      funcDeclaration({ x: 1, y: 2 }, { x: 3, y: 4 });
+      funcExpression({ x: -1, y: 2 }, { x: 3, y: -4 });
+      funcArrow({ x: 0, y: 0 }, { x: 1, y: 0 });
+      
+    </script>
+  </body>
+</html>

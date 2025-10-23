@@ -1,0 +1,100 @@
+В задачі розглядаємо алгоритм множення матриць.
+
+Тому ми порівнюємо, як наша програма буде поводитись з різними розмірами матриць та кількістю потоків.
+
+Matrix size = n x n; numThreads - number of threads.
+
+//візьмемо до уваги, що матриці генеруються випадковим чином, тому робитимемо декілька тестів.
+
+1. n=500:
+
+
+  - numThreads=1:
+  Test1:
+    Sequential Multiplication took: 2093 ms
+    Parallel Multiplication took: 1999 ms
+  Test2:
+    Sequential Multiplication took: 2051 ms
+    Parallel Multiplication took: 2043 ms
+
+  - numThreads=2:
+  Test1:
+    Sequential Multiplication took: 2203 ms
+    Parallel Multiplication took: 1275 ms
+  Test2:
+    Sequential Multiplication took: 2302 ms
+    Parallel Multiplication took: 1191 ms
+
+
+  - numThreads=4:
+  Test1:
+    Sequential Multiplication took: 2354 ms
+    Parallel Multiplication took: 638 ms
+  Test2:
+    Sequential Multiplication took: 1991 ms
+    Parallel Multiplication took: 582 ms
+
+
+  - numThreads=8:
+  Test1:
+    Sequential Multiplication took: 2567 ms
+    Parallel Multiplication took: 634 ms
+  Test2:
+    Sequential Multiplication took: 2296 ms
+    Parallel Multiplication took: 457 ms
+
+
+Можемо зробити висновок, що чим більше потоків, тим швидше працює папалельне множення. При кількості потоків=1 бачимо,
+що різниці між паралельним та послідовним практично немає. При 2 потоках швидкість паралельного майже в двічі швидша, а при 4 та 8 -
+в 4-5 разів, аніж при 1 потоці.
+
+Збільшимо кількість елементів у матриці.
+
+
+2. n=1000:
+
+
+  - numThreads=1:
+  Test1:
+    Sequential Multiplication took: 22391 ms
+    Parallel Multiplication took: 21640 ms
+  Test2:
+    Sequential Multiplication took: 28426 ms
+    Parallel Multiplication took: 22923 ms
+
+
+  - numThreads=2:
+  Test1:
+    Sequential Multiplication took: 22355 ms
+    Parallel Multiplication took: 12632 ms
+  Test2:
+    Sequential Multiplication took: 22783 ms
+    Parallel Multiplication took: 13560 ms
+
+
+  - numThreads=4:
+  Test1:
+    Sequential Multiplication took: 27001 ms
+    Parallel Multiplication took: 9049 ms
+  Test2:
+    Sequential Multiplication took: 22620 ms
+    Parallel Multiplication took: 7909 ms
+
+
+  - numThreads=8:
+  Test1:
+    Sequential Multiplication took: 22198 ms
+    Parallel Multiplication took: 9262 ms
+  Test2:
+    Sequential Multiplication took: 23399 ms
+    Parallel Multiplication took: 8901 ms
+
+
+Видно, що вже при одному потоці паралельне множення працює швидше за послідовне.
+Зі збільшенням потоків пришвидшується паралельне множення в декілька разів.
+Можна помітити, що при 4 і 8 потоках різниці практично немає. Можна припустити, що із подальшим збільшенням кількості елементів у матриці
+розрив буде рости. Послідовне множення займатиме занадто довго навіть щоб просто порівняти результати.
+
+ВИСНОВОК.
+При малих числах різницю між цими двома видами множення можна і не помітити, але із постійним збільшенням до величезних чисел
+паралельне множення, із більшою кількістю потоків, матиме перевагу та зможе в десятки разів швидше виконувати задачу.

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task1</title>
+    <style>
+      body {
+        padding: 10px;
+        background-color: #e4e4e4;
+      }
+
+      label,
+      input,
+      button {
+        padding: 10px;
+        font-size: 16px;
+        margin-left: 20px;
+      }
+
+      button {
+        background-color: pink;
+        border: 1px black solid;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      button:active {
+        opacity: 0.6;
+      }
+
+      #histogram {
+        display: flex;
+        align-items: flex-end;
+        height: 300px;
+        background: white;
+        padding: 10px;
+        margin: 20px 10px;
+        gap: 10px;
+      }
+
+      .bar {
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="ColumnCount"
+      >Enter the number of columns (from 1 to 100):
+    </label>
+    <input type="number" id="ColumnCount" min="1" max="100" value="20" />
+    <button onclick="createHistogram()">Create</button>
+
+    <div id="histogram"></div>
+
+    <script>
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function createHistogram() {
+        const container = document.getElementById("histogram");
+        container.innerHTML = "";
+        const ColumnCount = parseInt(
+          document.getElementById("ColumnCount").value
+        );
+        for (let i = 0; i < ColumnCount; i++) {
+          const bar = document.createElement("div");
+          bar.className = "bar";
+          const minHeight = 1;
+          const maxHeight = 100;
+          const height =
+            Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+          bar.style.height = `${height}%`;
+          bar.style.backgroundColor = getRandomColor();
+          container.appendChild(bar);
+        }
+      }
+    </script>
+  </body>
+</html>

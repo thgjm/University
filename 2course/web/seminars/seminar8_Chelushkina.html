@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Countries form</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background-color: #222;
+        line-height: 22px;
+      }
+
+      form {
+        width: 90%;
+        max-width: 700px;
+        background: linear-gradient(135deg, #ffcedf, #ffb7e7);
+        color: black;
+        margin: 50px auto;
+        border-radius: 20px;
+        padding: 40px 35px;
+        text-align: center;
+      }
+
+      .CountryChoice,
+      .MonumentsChoice {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 10px;
+      }
+
+      .ContryChoiceChild,
+      .MonumentsChoiceChild {
+        display: flex;
+        align-items: center;
+      }
+
+      label,
+      input {
+        font-size: 16px;
+      }
+      label {
+        margin-left: 5px;
+      }
+
+      .CountryInfo {
+        display: none;
+      }
+
+      .CountryInfo img {
+        width: 300px;
+        height: 200px;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .Monuments div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .Monuments img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .CountryInfo h3:nth-of-type(2) {
+        margin-top: 20px;
+      }
+
+      button {
+        background-color: rgb(255, 139, 158);
+        font-size: 16px;
+        padding: 15px 25px;
+        border: 1px black solid;
+        border-radius: 15px;
+        transition: opacity 0.15ms;
+        cursor: pointer;
+        margin: 15px 0px;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+      button:active {
+        opacity: 0.7;
+      }
+
+      input[type="checkbox"] {
+        accent-color: pink;
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        margin-right: 0.5em;
+      }
+
+      /*custom checkbox*/
+      .MonumentsChoiceChild label {
+        position: relative;
+        padding-left: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        user-select: none;
+        display: inline-block;
+        line-height: 24px;
+      }
+
+      .MonumentsChoiceChild input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .checkmark {
+        position: absolute;
+        left: 2px;
+        top: 2px;
+        height: 18px;
+        width: 18px;
+        background-color: #fff;
+        border: 1px solid rgb(255, 110, 135);
+        border-radius: 6px;
+        transition: all 0.2s ease;
+      }
+
+      .MonumentsChoiceChild input:checked ~ .checkmark {
+        background-color: rgb(255, 133, 153);
+        border-color: rgb(126, 0, 67);
+      }
+
+      .checkmark::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 5px;
+        top: 0px;
+        width: 6px;
+        height: 12px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+
+      .MonumentsChoiceChild input:checked ~ .checkmark::after {
+        display: block;
+      }
+
+      /*custom radiobutton*/
+      .ContryChoiceChild label {
+        position: relative;
+        padding-left: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        user-select: none;
+        display: inline-block;
+        line-height: 24px;
+      }
+
+      .ContryChoiceChild input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .radio-mark {
+        position: absolute;
+        top: 2px;
+        left: 3px;
+        height: 18px;
+        width: 18px;
+        background-color: #fff;
+        border: 1px solid rgb(255, 110, 135);
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+      }
+
+      .ContryChoiceChild input[type="radio"]:checked ~ .radio-mark::after {
+        display: block;
+      }
+
+      .radio-mark::after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgb(255, 110, 135);
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h2>Оберіть країну.</h2>
+      <div class="CountryChoice">
+        <div class="ContryChoiceChild">
+          <label for="radioButton1">
+            <input
+              type="radio"
+              id="radioButton1"
+              name="country"
+              value="Ukraine"
+            />
+            <span class="radio-mark"></span>
+            Україна
+          </label>
+        </div>
+        <div class="ContryChoiceChild">
+          <label for="radioButton2">
+            <input
+              type="radio"
+              id="radioButton2"
+              name="country"
+              value="Japan"
+            />
+            <span class="radio-mark"></span>
+            Японія
+          </label>
+        </div>
+        <div class="ContryChoiceChild">
+          <label for="radioButton3">
+            <input
+              type="radio"
+              id="radioButton3"
+              name="country"
+              value="France"
+            />
+            <span class="radio-mark"></span>
+            Франція
+          </label>
+        </div>
+        <div class="ContryChoiceChild">
+          <label for="radioButton4">
+            <input
+              type="radio"
+              id="radioButton4"
+              name="country"
+              value="Italy"
+            />
+            <span class="radio-mark"></span>
+            Італія
+          </label>
+        </div>
+        <div class="ContryChoiceChild">
+          <label for="radioButton5">
+            <input
+              type="radio"
+              id="radioButton5"
+              name="country"
+              value="Brazil"
+            />
+            <span class="radio-mark"></span>
+            Бразилія
+          </label>
+        </div>
+      </div>
+
+      <div class="CountryInfo">
+        <img src="" class="CountryFlag" alt="UkraineFlag" />
+        <h3 class="CountryName"></h3>
+
+        <div class="Monuments">
+          <div class="Monument1">
+            <img src="" class="MonumentPhoto1" alt="Monument1" />
+            <p class="MonumentDescription1"></p>
+          </div>
+          <div class="Monument2">
+            <img src="" class="MonumentPhoto2" alt="Monument2" />
+            <p class="MonumentDescription2"></p>
+          </div>
+          <div class="Monument3">
+            <img src="" class="MonumentPhoto3" alt="Monument3" />
+            <p class="MonumentDescription3"></p>
+          </div>
+        </div>
+
+        <h3>Які пам'ятки хочете відвідати?</h3>
+
+        <div class="MonumentsChoice">
+          <div class="MonumentsChoiceChild">
+            <label for="choice1">
+              <input type="checkbox" id="choice1" name="MonumentChoice" />
+              <span class="checkmark"></span>
+              <span class="label-text"></span>
+            </label>
+          </div>
+          <div class="MonumentsChoiceChild">
+            <label for="choice2">
+              <input type="checkbox" id="choice2" name="MonumentChoice" />
+              <span class="checkmark"></span>
+              <span class="label-text"></span>
+            </label>
+          </div>
+          <div class="MonumentsChoiceChild">
+            <label for="choice3">
+              <input type="checkbox" id="choice3" name="MonumentChoice" />
+              <span class="checkmark"></span>
+              <span class="label-text"></span>
+            </label>
+          </div>
+        </div>
+        <button onclick="countPrice()">Порахувати загальну ціну</button>
+      </div>
+    </form>
+
+    <script>
+      const CountryName = document.querySelector(".CountryName");
+      const CountryFlag = document.querySelector(".CountryFlag");
+      const MonumentPhoto1 = document.querySelector(".MonumentPhoto1");
+      const MonumentPhoto2 = document.querySelector(".MonumentPhoto2");
+      const MonumentPhoto3 = document.querySelector(".MonumentPhoto3");
+      const MonumentDescription1 = document.querySelector(
+        ".MonumentDescription1"
+      );
+      const MonumentDescription2 = document.querySelector(
+        ".MonumentDescription2"
+      );
+      const MonumentDescription3 = document.querySelector(
+        ".MonumentDescription3"
+      );
+      const choice1 = document.getElementById("choice1");
+      const choice2 = document.getElementById("choice2");
+      const choice3 = document.getElementById("choice3");
+
+      window.onload = function () {
+        const radios = document.getElementsByName("country");
+
+        radios.forEach((radio) => {
+          radio.addEventListener("change", function () {
+            const checkboxes = document.querySelectorAll(
+              'input[type="checkbox"]'
+            );
+            checkboxes.forEach((cb) => (cb.checked = false));
+
+            const elem = document.querySelector(".TotalPrice");
+            if (elem) {
+              elem.remove();
+            }
+            switch (this.value) {
+              case "Ukraine":
+                showUkraineInfo();
+                break;
+              case "Japan":
+                showJapanInfo();
+                break;
+              case "France":
+                showFranceInfo();
+                break;
+              case "Italy":
+                showItalyInfo();
+                break;
+              case "Brazil":
+                showBrazilInfo();
+                break;
+            }
+          });
+        });
+      };
+
+      function showUkraineInfo() {
+        const CountryInfo = document.querySelector(".CountryInfo");
+        CountryInfo.style.display = "none";
+        setTimeout(() => {
+          CountryInfo.style.display = "block";
+        }, 2);
+
+        CountryName.innerHTML = "Україна";
+
+        CountryFlag.src =
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Ukraine.svg/330px-Flag_of_Ukraine.svg.png";
+        MonumentPhoto1.src =
+          "https://znaki.fm/static/content/thumbs/1852x1234/a/8f/nimufm-e37602ade6deaca303c70b909c1f38fa.webp";
+        MonumentPhoto2.src =
+          "https://znaki.fm/static/content/thumbs/1852x1228/c/0d/bcxgvw-425a14351f75d59f114822956b1590dc.webp";
+        MonumentPhoto3.src =
+          "https://znaki.fm/static/content/thumbs/1852x1228/b/ce/4y5uar-d41dc11c186de6794f78fd2128092ceb.webp";
+        MonumentDescription1.textContent =
+          "Національний заповідник “Хортиця”. На цей острів люди їдуть, щоб підзарядиться життєвою енергією. Для багатьох — це місце сили, бо Запорозька Січ — це символ епохи козацької вольниці, військової доблесті і самобутності українського народу.";
+        let price1 = document.createElement("span");
+        price1.className = "ticket-price";
+        price1.style.fontWeight = "bold";
+        price1.dataset.price = "100";
+        price1.textContent = "Вартість квитка: 100 грн";
+        let br1 = document.createElement("br");
+        MonumentDescription1.appendChild(br1);
+        MonumentDescription1.appendChild(price1);
+        MonumentDescription2.textContent =
+          "Одеський національний академічний театр опери та балету— одна з найзнаменитіших пам'яток історії та культури України і світу та візитна картка міста. Багато людей приїжджають до Одеси тільки заради того, щоб побачити і відвідати цей шедевр архітектури, визнаний одним з найкрасивіших театрів Європи.";
+        let price2 = document.createElement("span");
+        price2.className = "ticket-price";
+        price2.style.fontWeight = "bold";
+        price2.dataset.price = "300";
+        price2.textContent = "Вартість квитка: 300 грн";
+        let br2 = document.createElement("br");
+        MonumentDescription2.appendChild(br2);
+        MonumentDescription2.appendChild(price2);
+        MonumentDescription3.textContent =
+          "Золоті Ворота в Києві зачаровують своєю загадковістю. Ця визначна пам'ятка України не має аналогів в Європі. Згідно з однією легендою, ворота назвали золотими через те, що коли мандрівники в’їжджали в Древній Київ, вони платили місту данину золотом. Інша легенда свідчить, що стулки воріт були зроблені з найчистішого золота.";
+        let price3 = document.createElement("span");
+        price3.className = "ticket-price";
+        price3.style.fontWeight = "bold";
+        price3.dataset.price = "200";
+        price3.textContent = "Вартість квитка: 200 грн";
+        let br3 = document.createElement("br");
+        MonumentDescription3.appendChild(br3);
+        MonumentDescription3.appendChild(price3);
+
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Хортиця";
+        document.querySelector('label[for="choice2"] .label-text').textContent =
+          "Театр опери та балету";
+        document.querySelector('label[for="choice3"] .label-text').textContent =
+          "Золоті Ворота";
+      }
+
+      function showJapanInfo() {
+        const CountryInfo = document.querySelector(".CountryInfo");
+        CountryInfo.style.display = "none";
+        setTimeout(() => {
+          CountryInfo.style.display = "block";
+        }, 2);
+
+        CountryName.innerHTML = "Японія";
+        CountryFlag.src =
+          "https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1200px-Flag_of_Japan.svg.png";
+
+        MonumentPhoto1.src =
+          "https://vsviti.com.ua/wp-content/uploads/2013/10/1303654540_9a5e9c2d057a.jpg";
+        MonumentPhoto2.src =
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/170721_Cin%C3%A9ma_-_Mus%C3%A9e_du_Petit_Prince_de_Saint-Exup%C3%A9ry_Hakone_Japan11s3.jpg/500px-170721_Cin%C3%A9ma_-_Mus%C3%A9e_du_Petit_Prince_de_Saint-Exup%C3%A9ry_Hakone_Japan11s3.jpg";
+        MonumentPhoto3.src =
+          "https://kenzly.com/wp-content/uploads/2024/06/Fushimi-Inari-Taisha-Shrine-Building.jpg";
+        MonumentDescription1.innerHTML =
+          "Замок Інуяма. Один із найстаріших замків у Японії розташований поблизу міста Нагоя. Замок носить звання національного скарбу Японії.";
+        let price1 = document.createElement("span");
+        price1.className = "ticket-price";
+        price1.style.fontWeight = "bold";
+        price1.dataset.price = "300";
+        price1.textContent = "Вартість квитка: 300 грн";
+        let br1 = document.createElement("br");
+        MonumentDescription1.appendChild(br1);
+        MonumentDescription1.appendChild(price1);
+        MonumentDescription2.innerHTML =
+          "Музей Маленького принца. Цей музей у Хаконі присвячений творчості Антуана де Сент-Екзюпері. Музей виконаний у прованському стилі і навіть має справжній французький ресторан.";
+        let price2 = document.createElement("span");
+        price2.className = "ticket-price";
+        price2.style.fontWeight = "bold";
+        price2.dataset.price = "500";
+        price2.textContent = "Вартість квитка: 500 грн";
+        let br2 = document.createElement("br");
+        MonumentDescription2.appendChild(br2);
+        MonumentDescription2.appendChild(price2);
+        MonumentDescription3.innerHTML =
+          "Храм Фусімі Інарі. Приголомшливої краси храм японських жіночих божеств знаходиться на околицях Кіото.";
+        let price3 = document.createElement("span");
+        price3.className = "ticket-price";
+        price3.style.fontWeight = "bold";
+        price3.dataset.price = "600";
+        price3.textContent = "Вартість квитка: 600 грн";
+        let br3 = document.createElement("br");
+        MonumentDescription3.appendChild(br3);
+        MonumentDescription3.appendChild(price3);
+
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Замок Інуяма";
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Музей Маленького принца";
+        document.querySelector('label[for="choice3"] .label-text').textContent =
+          "Храм Фусімі Інарі";
+      }
+
+      function showFranceInfo() {
+        const CountryInfo = document.querySelector(".CountryInfo");
+        CountryInfo.style.display = "none";
+        setTimeout(() => {
+          CountryInfo.style.display = "block";
+        }, 2);
+
+        CountryName.innerHTML = "Франція";
+        CountryFlag.src =
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/1024px-Flag_of_France.svg.png";
+
+        MonumentPhoto1.src =
+          "https://waytravel.com.ua/wp-content/uploads/2024/07/notr-dam-de-pari.jpg";
+        MonumentPhoto2.src =
+          "https://ethnomir.ru/upload/medialibrary/254/zamok_shambor_1.jpg";
+        MonumentPhoto3.src =
+          "https://www.castelrose.com/wp-content/uploads/2024/09/camargue-5.jpeg";
+        MonumentDescription1.innerHTML =
+          "Нотр-Дам-де-Парі. Нотр-Дам-де-Парі або Собор Паризької Богоматері відомий насамперед завдяки роману Віктора Гюго, який мріяв знову розпалити у французах любов до собору.";
+        let price1 = document.createElement("span");
+        price1.className = "ticket-price";
+        price1.style.fontWeight = "bold";
+        price1.dataset.price = "550";
+        price1.textContent = "Вартість квитка: 550 грн";
+        let br1 = document.createElement("br");
+        MonumentDescription1.appendChild(br1);
+        MonumentDescription1.appendChild(price1);
+        MonumentDescription2.innerHTML =
+          "Замок Шамбор. До будови цієї чудової будівлі епохи Ренесансу приклав руку сам Леонардо Да Вінчі. Найбільша резиденція французьких королів була побудована XVI столітті за наказом Франциска I.";
+        let price2 = document.createElement("span");
+        price2.className = "ticket-price";
+        price2.style.fontWeight = "bold";
+        price2.dataset.price = "650";
+        price2.textContent = "Вартість квитка: 650 грн";
+        let br2 = document.createElement("br");
+        MonumentDescription2.appendChild(br2);
+        MonumentDescription2.appendChild(price2);
+        MonumentDescription3.innerHTML =
+          "Камарг. Заповідний природний парк у дельті Рони, з унікальними безмежними пастельними пейзажами, де білий пісок морських лагун змінюється солончаками та очеретяними болотами з порослами сріблясто-фіолетових тонів.";
+        let price3 = document.createElement("span");
+        price3.className = "ticket-price";
+        price3.style.fontWeight = "bold";
+        price3.dataset.price = "500";
+        price3.textContent = "Вартість квитка: 500 грн";
+        let br3 = document.createElement("br");
+        MonumentDescription3.appendChild(br3);
+        MonumentDescription3.appendChild(price3);
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Нотр-Дам-де-Парі";
+        document.querySelector('label[for="choice2"] .label-text').textContent =
+          "Замок Шамбор";
+        document.querySelector('label[for="choice3"] .label-text').textContent =
+          "Камарг";
+      }
+
+      function showItalyInfo() {
+        const CountryInfo = document.querySelector(".CountryInfo");
+        CountryInfo.style.display = "none";
+        setTimeout(() => {
+          CountryInfo.style.display = "block";
+        }, 2);
+        CountryName.innerHTML = "Італія";
+        CountryFlag.src =
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1500px-Flag_of_Italy.svg.png";
+        MonumentPhoto1.src =
+          "https://tripmydream.cc/travelhub/travel/blocks/22/036/block_22036.jpg?v1";
+        MonumentPhoto2.src =
+          "https://tripmydream.cc/travelhub/travel/blocks/22/046/block_22046.jpg?v1";
+        MonumentPhoto3.src =
+          "https://tripmydream.cc/travelhub/travel/blocks/22/052/block_22052.jpg?v1";
+
+        MonumentDescription1.innerHTML =
+          "Колізей — визначна пам'ятка Італії, яка не потребує особливого опису. Стародавній амфітеатр, одна з найграндіозніших споруд Старого світу, яка збереглося донині. Безумовний символ не лише Риму, але й усієї країни.";
+        let price1 = document.createElement("span");
+        price1.className = "ticket-price";
+        price1.style.fontWeight = "bold";
+        price1.dataset.price = "720";
+        price1.textContent = "Вартість квитка: 720 грн";
+        let br1 = document.createElement("br");
+        MonumentDescription1.appendChild(br1);
+        MonumentDescription1.appendChild(price1);
+        MonumentDescription2.innerHTML =
+          "Санта-Марія-дель-Фьоре — неповторний собор, що на центральній площі Флоренції. Одна з найвідоміших церков у всьому світі.";
+        let price2 = document.createElement("span");
+        price2.className = "ticket-price";
+        price2.style.fontWeight = "bold";
+        price2.dataset.price = "400";
+        price2.textContent = "Вартість квитка: 400 грн";
+        let br2 = document.createElement("br");
+        MonumentDescription2.appendChild(br2);
+        MonumentDescription2.appendChild(price2);
+        MonumentDescription3.innerHTML =
+          "Пізанська вежа - дивно, але один з основних символів Італії, нахилена старовинна вежа, знаходиться в Пізі, куди туристи приїжджають не так і часто.";
+        let price3 = document.createElement("span");
+        price3.className = "ticket-price";
+        price3.style.fontWeight = "bold";
+        price3.dataset.price = "150";
+        price3.textContent = "Вартість квитка: 150 грн";
+        let br3 = document.createElement("br");
+        MonumentDescription3.appendChild(br3);
+        MonumentDescription3.appendChild(price3);
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Колізей";
+        document.querySelector('label[for="choice2"] .label-text').textContent =
+          "Санта-Марія-дель-Фьоре ";
+        document.querySelector('label[for="choice3"] .label-text').textContent =
+          "Пізанська вежа";
+      }
+
+      function showBrazilInfo() {
+        const CountryInfo = document.querySelector(".CountryInfo");
+        CountryInfo.style.display = "none";
+        setTimeout(() => {
+          CountryInfo.style.display = "block";
+        }, 2);
+        CountryName.innerHTML = "Бразилія";
+        CountryFlag.src =
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1024px-Flag_of_Brazil.svg.png";
+
+        MonumentPhoto1.src =
+          "https://images.squarespace-cdn.com/content/v1/56e36f751d07c0743d1e142f/1471717857809-QOV2TD59V3REGBK88FWF/Art+Deco+Statue+-+Christ+the+Redeemer%2C+Rio+de+Janeiro%2C+Brazil";
+        MonumentPhoto2.src =
+          "https://tripmydream.cc/travelhub/travel/block_gallery/11/2710/default_112710.jpg?";
+        MonumentPhoto3.src =
+          "https://cs12.pikabu.ru/post_img/big/2021/05/13/8/1620908466190881304.jpg";
+
+        MonumentDescription1.innerHTML =
+          "Статуя Христа, Ріо-де-Жанейро. Монумент Христа Спасителя заввишки 38 метрів - візитна картка Ріо-де-Жанейро. Мандрівники з усього світу піднімаються до підніжжя статуї, розташованої на вершині гори Корковадо, щоб насолодитися мальовничою панорамою бухти та міста.";
+        let price1 = document.createElement("span");
+        price1.className = "ticket-price";
+        price1.style.fontWeight = "bold";
+        price1.dataset.price = "100";
+        price1.textContent = "Вартість квитка: 100 грн";
+        let br1 = document.createElement("br");
+        MonumentDescription1.appendChild(br1);
+        MonumentDescription1.appendChild(price1);
+        MonumentDescription2.innerHTML =
+          "Ботанічний сад, Ріо-де-Жанейро. Все феєричне розмаїття бразильської флори та фауни представлено у ботанічному саду. На площі 54 га — понад 6,5 тисячі видів насаджень, особливо цінні ті, що знаходяться на межі зникнення. Крім багатої рослинності, в ботсаду буде цікаво побачити пам'ятники та архітектурні споруди.";
+        let price2 = document.createElement("span");
+        price2.className = "ticket-price";
+        price2.style.fontWeight = "bold";
+        price2.dataset.price = "870";
+        price2.textContent = "Вартість квитка: 870 грн";
+        let br2 = document.createElement("br");
+        MonumentDescription2.appendChild(br2);
+        MonumentDescription2.appendChild(price2);
+        MonumentDescription3.innerHTML =
+          "Португальська королівська бібліотека, Ріо-де-Жанейро. Португальська королівська бібліотека працює з 1837 року і називається так завдяки найбільшій кількості книг португальською мовою (після Португалії, зрозуміло) яка постійно поповнюється. Будівля збудована в неомануелістському стилі та представляє окремий інтерес.";
+        let price3 = document.createElement("span");
+        price3.className = "ticket-price";
+        price3.style.fontWeight = "bold";
+        price3.dataset.price = "230";
+        price3.textContent = "Вартість квитка: 230 грн";
+        let br3 = document.createElement("br");
+        MonumentDescription3.appendChild(br3);
+        MonumentDescription3.appendChild(price3);
+        document.querySelector('label[for="choice1"] .label-text').textContent =
+          "Статуя Христа";
+        document.querySelector('label[for="choice2"] .label-text').textContent =
+          "Ботанічний сад";
+        document.querySelector('label[for="choice3"] .label-text').textContent =
+          "Португальська королівська бібліотека";
+      }
+
+      function countPrice() {
+        const elem = document.querySelector(".TotalPrice");
+        if (elem) {
+          elem.remove();
+        }
+        event.preventDefault();
+        let p = document.createElement("p");
+        p.className = "TotalPrice";
+        let total = 0;
+        const prices = document.getElementsByClassName("ticket-price");
+
+        const checkbox1 = document.getElementById("choice1");
+        const checkbox2 = document.getElementById("choice2");
+        const checkbox3 = document.getElementById("choice3");
+
+        if (checkbox1.checked) {
+          total += Number(prices[0].dataset.price);
+        }
+        if (checkbox2.checked) {
+          total += Number(prices[1].dataset.price);
+        }
+        if (checkbox3.checked) {
+          total += Number(prices[2].dataset.price);
+        }
+        console.log(total);
+        if (total == 0) {
+          p.innerHTML = "Ви не обрали жодну історичну пам'ятку.";
+        } else {
+          p.innerHTML = `Всього потрібно буде заплатити ${total}грн.`;
+        }
+        document.querySelector(".CountryInfo").appendChild(p);
+      }
+    </script>
+  </body>
+</html>

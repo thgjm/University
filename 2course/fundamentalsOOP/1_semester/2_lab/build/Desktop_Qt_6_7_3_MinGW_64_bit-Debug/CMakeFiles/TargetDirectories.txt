@@ -1,0 +1,9 @@
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/2_lab.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/install.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/2_lab_autogen_timestamp_deps.dir
+C:/Users/thgjm/Desktop/fundamentalsOOP/1_semester/2_lab/build/Desktop_Qt_6_7_3_MinGW_64_bit-Debug/CMakeFiles/2_lab_autogen.dir

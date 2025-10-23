@@ -1,0 +1,68 @@
+<html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Task</title>
+    </head>
+    <body>
+      <script>
+        let arr1 = [1, 2, 3, 4, 5];
+        let arr2 = [-1, -2, 0, 1, 2, 3, 4, 5, 6, 7];
+
+        console.log("--Task 1--");
+        console.log("Array 1: " + arr1);
+        console.log("Array 2: " + arr2);
+        let uniqueArray = [];
+        arr1.forEach(function (num) {
+          if (!uniqueArray.includes(num)) {
+            uniqueArray.push(num);
+          }
+        });
+        arr2.forEach(function (num) {
+          if (!uniqueArray.includes(num)) {
+            uniqueArray.push(num);
+          }
+        });
+        console.log("Unique array: " + uniqueArray);
+
+        console.log("\n--Task 2--");
+        console.log("Array: " + arr2);
+        let PositiveEven = arr2.filter(function (num) {
+          if ((num > 0) & (num % 2 == 0)) return num;
+        });
+        console.log("Positive even numbers in array: " + PositiveEven);
+
+        console.log("\n--Task 3--");
+        console.log("Array: " + arr2);
+        if (arr2.includes(0)) {
+          console.log("This array includes 0.");
+        }
+
+        console.log("\n--Task 4--");
+        console.log("Array: " + arr2);
+        console.log("Index of 5: " + arr2.indexOf(5));
+
+        console.log("\n--Task 5--");
+        console.log("Array: " + arr1);
+        let product = arr1.reduce(function (acc, num) {
+          return acc * num;
+        }, 1);
+        console.log("Product of numbers in array : " + product);
+
+        let arrNums = [-2, 0, 8, -3, 4, 9, 10, 1, 5];
+        let arrChar = ["red", "green", "blue"];
+        console.log("\n--Task 6--");
+        console.log("Words array: " + arrChar);
+        console.log("Sorted words array: " + arrChar.sort());
+        console.log("\nNumbers array: " + arrNums);
+        console.log(
+          "Sorted numbers array: " +
+            arrNums.sort(function (a, b) {
+              return Math.abs(a) - Math.abs(b);
+            })
+        );
+      </script>
+    </body>
+  </html>
+</html>

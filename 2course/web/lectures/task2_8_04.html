@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task2</title>
+</head>
+<body>
+  <script>
+
+  function HelpFunc(number, words) {
+      const lastDigit = number % 10;
+      const lastTwoDigits = number % 100;
+
+      if (lastTwoDigits >= 11 && lastTwoDigits <= 14) return words[2];
+      if (lastDigit === 1) return words[0];
+      if (lastDigit >= 2 && lastDigit <= 4) return words[1];
+      return words[2];
+    }
+
+    function funcDeclaration(uah, kop) {
+      console.log("Function Declaration");
+      console.log(`${uah}.${kop}`);
+      const Total = uah * 100 + kop;
+      const finalUah = Math.floor(Total / 100);
+      const finalKop = Total % 100;
+
+      const uahWord = HelpFunc(finalUah, ['гривня', 'гривні', 'гривень']);
+      const kopWord = HelpFunc(finalKop, ['копійка', 'копійки', 'копійок']);
+
+      console.log(`Вартість замовлення: ${finalUah} ${uahWord} ${finalKop} ${kopWord}`);
+    }
+    const funcExpression = function(uah, kop) {
+      console.log("Function Expression");
+      console.log(`${uah}.${kop}`);
+      const Total = uah * 100 + kop;
+      const finalUah = Math.floor(Total / 100);
+      const finalKop = Total % 100;
+      const uahWord = HelpFunc(finalUah, ['гривня', 'гривні', 'гривень']);
+      const kopWord = HelpFunc(finalKop, ['копійка', 'копійки', 'копійок']);
+
+      console.log(`Вартість замовлення: ${finalUah} ${uahWord} ${finalKop} ${kopWord}`);
+    };
+    const funcArrow = (uah, kop) => {
+      console.log("Arrow Function");
+      console.log(`${uah}.${kop}`);
+      const Total = uah * 100 + kop;
+      const finalUah = Math.floor(Total / 100);
+      const finalKop = Total % 100;
+      const uahWord = HelpFunc(finalUah, ['гривня', 'гривні', 'гривень']);
+      const kopWord = HelpFunc(finalKop, ['копійка', 'копійки', 'копійок']);
+
+      console.log(`Вартість замовлення: ${finalUah} ${uahWord} ${finalKop} ${kopWord}`);
+    };
+    funcDeclaration(2, 75);
+    funcExpression(0, 1);
+    funcArrow(25, 3);
+    funcDeclaration(20, 102);
+  </script>
+</body>
+</html>

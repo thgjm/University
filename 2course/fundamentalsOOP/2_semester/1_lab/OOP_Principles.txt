@@ -1,0 +1,106 @@
+//original code source to this semester's educational project: https://github.com/IriskaIK/yet-another-orm-implementation
+
+
+OOP principles that are used in the project:
+
+1. OOP Basics:
+
+a) Encapsulation:
+  - Private fields and methods are used extensively, for example in PostgresDriver:
+
+    /*
+    private static instance: PostgresDriver | null = null;
+    private pool: Pool | null = null;
+    private readonly config: DriverConfig;
+    */
+
+  - Public interfaces expose only necessary methods while hiding implementation details.
+
+b) Inheritance:
+  - Class inheritance is used with extends:
+
+    /*
+    export class BaseModel<T extends BaseModel<T>> extends BaseModelStatic<T>
+    export abstract class PostgresQueryCompiler
+    export abstract class ClauseMixin
+    */
+
+c) Polymorphism:
+  - Interface-based polymorphism through Driver interface:
+
+    /*
+    export interface Driver {
+    connect(): Promise<void>;
+    disconnect(): Promise<void>;
+    query(query: Query): Promise<any>;
+    isConnected(): boolean;
+    getDialect(): Dialect;
+    }
+    */
+
+  - Different implementations: PostgresDriver, MySqlDriver, SqliteDriver.
+
+
+2. General OOP Principles:
+
+a) KISS (Keep It Simple, Stupid):
+  - Clear, focused class responsibilities
+  - Simple method signatures with descriptive names
+  - Straightforward inheritance hierarchies
+
+b) DRY (Don't Repeat Yourself):
+  - Common functionality extracted into base classes (BaseModel, BaseModelStatic)
+  - Shared interfaces (Driver, Dialect)
+  - Reusable mixins (ClauseMixin)
+
+c) Abstraction:
+  - High-level abstractions like Query, Driver, Dialect
+  - Abstract classes (PostgresQueryCompiler, ClauseMixin)
+
+d) Distribution of Functionality:
+  - Clear separation of concerns between:
+    ~ Models (BaseModel)
+    ~ Query Building (QueryBuilder)
+    ~ Database Drivers (PostgresDriver, MySqlDriver)
+    ~ Dialects (PostgresDialect)
+
+3. Specific OOP Principles:
+
+a) SOLID:
+  - Single Responsibility Principle:
+    ~ Each class has a single purpose (e.g., WhereClauseBuilder for building WHERE clauses)
+    ~ Separate classes for different query types (SelectQueryBuilder, UpdateQueryBuilder)
+  - Open/Closed Principle:
+    ~ Abstract classes and interfaces allow extension without modification
+    ~ New drivers can be added without changing existing code
+  - Liskov Substitution Principle:
+    ~ Driver implementations are interchangeable through the Driver interface
+    ~ Query builders extend base classes correctly
+  - Interface Segregation:
+    ~ Specific interfaces for different concerns (Driver, Dialect, Query)
+    ~ No bloated interfaces forcing unnecessary implementations
+  - Dependency Inversion:
+    ~ High-level modules depend on abstractions (Driver, Dialect)
+    ~ Factory pattern used for driver creation (DriverFactory)
+
+b) Low Coupling/High Cohesion:
+  - Classes are loosely coupled through interfaces and abstract classes
+  - Each class has a clear, focused responsibility
+  - Dependencies are injected rather than created internally
+
+c) Law of Demeter:
+  - Methods generally only call methods on:
+    ~ Their own object
+    ~ Parameters passed to them
+    ~ Objects they create
+    ~ Directly held component objects
+
+d) Principle of Least Astonishment:
+  - Consistent naming conventions
+  - Methods do what their names suggest
+  - Similar patterns used throughout the codebase
+  - Predictable class hierarchies and relationships
+
+e) Patterns:
+link to the patterns description:
+https://github.com/IriskaIK/yet-another-orm-implementation/blob/master/lab2conditions.md

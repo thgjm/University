@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Доставка та оплата</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div id="overlay"></div>
+      <header>
+        <div
+          class="container row d-flex align-items-center justify-content-between mx-auto h-100"
+        >
+          <div
+            class="header-left col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start"
+          >
+            <img src="images/logo.png" alt="Logo" />
+            <div
+              class="company-name d-flex justify-content-center flex-column p-0 m-0"
+            >
+              <h3 class="p-0">Книжковий магазин</h3>
+              <p class="p-0">Найкращий книжковий магазин</p>
+            </div>
+          </div>
+          <div
+            class="header-right col-12 col-lg-6 d-flex flex-column justify-content-between align-items-center align-items-lg-end py-3"
+          >
+            <p class="PhoneNumber">+38(044) 123-45-67</p>
+            <p class="PhoneNumber">+38(044) 123-45-67</p>
+            <a href="#" class="feedback" onclick="ShowFeedback()"
+              >Зворотний зв'язок</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <div class="menu">
+        <div class="container py-3">
+          <ul
+            class="d-none d-sm-flex flex-row justify-content-center flex-wrap gap-2"
+          >
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+
+          <ul class="d-flex d-sm-none flex-column align-items-start gap-2 px-2">
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content pt-5 text-start">
+        <div class="container secondary h-100">
+          <div class="topBlock row">
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="NewsBlock">
+                <h3 class="news-title">Новини</h3>
+                <div class="news-item">
+                  <p>
+                    <i>11 травня 2025 р.</i><br />Нова партія книжок у розділі
+                    “Фентезі”
+                  </p>
+                </div>
+                <div class="news-item">
+                  <p>
+                    <i>8 травня 2025 р.</i><br />Додано знижки на підручники
+                  </p>
+                </div>
+                <div class="news-item">
+                  <p>
+                    <i>13 травня 2025 р.</i><br />Відкрито передзамовлення на нашу нову книжку
+                  </p>
+                </div>
+                <div class="news-item">
+                  <p>
+                    <i>1 травня 2025 р.</i><br />Поновлено асортимент нон-фікшн
+                  </p>
+                </div>
+                <a class="news-archive text-white" href="#">Архів новин</a>
+              </div>
+            </div>
+            <div class="col-12 col-md-8 col-lg-8">
+              <div class="DeliveryInfo mx-auto">
+                <h2><b>Доставка і оплата</b></h2>
+                <p>
+                  Ми здійснюємо відправлення ваших книжечок в термін від 1 до 3
+                  днів.
+                </p>
+                <p>
+                  - замовлення, оформлені в будні, вирушать до вас наступного
+                  дня.
+                </p>
+                <p>
+                  - замовлення, оформлені у вихідні, поїдуть до вас у вівторок.
+                </p>
+                <p>
+                  У разі виникнення додаткових питань чи уточнень, ми неодмінно
+                  зв'яжемося з вами перед відправкою.
+                </p>
+                <p>
+                  Доступні служби доставки:
+                  <b>Нова пошта, Укрпошта та Meest Пошта.</b>
+                </p>
+                <h4><b>Механізм формування замовлення:</b></h4>
+                <p>
+                  Усі замовлення, що надходять від вас, одразу обробляють наші
+                  менеджери. Якщо ви вказали всі необхідні дані, ми автоматично
+                  підтверджуємо ваше замовлення, без дзвінка менеджера, і
+                  надсилаємо смс з інформацією, що замовлення передано на склад
+                  і готується до відправлення, тому очікуйте:
+                </p>
+                <ul>
+                  <li>
+                    наступне смс повідомлення з номером ТТН
+                    (товарно-транспортної накладної) вашої посилки, якщо ви
+                    обрали відділення Нової пошти чи Укрпошти;
+                  </li>
+                  <li>
+                    телефонний дзвінок кур'єра, якщо ви обрали кур'єрську
+                    доставку.
+                  </li>
+                </ul>
+                <p>
+                  У разі, якщо в замовленні бракує інформації, вам обов'язково
+                  зателефонує менеджер для уточнення необхідних даних.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="PostsOptions text-center row g-5 d-flex flex-wrap px-5">
+            <div class="col-md-6 col-lg-4 mx-auto h-100">
+              <div class="DeliveryItem h-100">
+                <img
+                  class="DeliveryLogo"
+                  src="images/ukrpost.jpg"
+                  alt="Укрпошта"
+                />
+                <h3 class="DeliveryName mb-5">Укрпошта</h3>
+                <p class="mt-5">
+                  Безкоштовна доставка на відділення Укрпошти від 349 грн.
+                  Стандартна вартість - 39 грн.
+                </p>
+                <p>Кур'єрська доставка - 75 грн</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mx-auto h-100">
+              <div class="DeliveryItem h-100">
+                <img
+                  class="DeliveryLogo"
+                  src="images/meestpost.jpg"
+                  alt="Meest пошта"
+                />
+                <h3 class="DeliveryName mb-5">Meest Пошта</h3>
+                <p class="mt-5">
+                  Безкоштовна доставка на відділення/міні-відділення від 499
+                  грн.
+                </p>
+                <p>Стандартна вартість - 50 грн</p>
+                <p>Кур'єрська доставка - 70 грн</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mx-auto h-100">
+              <div class="DeliveryItem h-100">
+                <img
+                  class="DeliveryLogo"
+                  src="images/newpost.jpg"
+                  alt="Нова пошта"
+                />
+                <h3 class="DeliveryName mb-5">Нова пошта</h3>
+                <p class="mt-5">
+                  Безкоштовна доставка на відділення Нової пошти від 799 грн.
+                </p>
+                <p>Стандартна вартість - 60 грн</p>
+                <p>
+                  Для замовлень від 599 грн доставка в поштомати Нової пошти
+                  безкоштовна.
+                </p>
+                <p>Стандартна вартість - 55 грн</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-white py-4">
+      <div
+        class="container row d-flex align-items-start justify-content-between mx-auto"
+      >
+        <div
+          class="footer-left col-sm-6 col-md-4 col-lg-4 d-flex justify-content-start align-items-center align-items-lg-start flex-column p-0 m-0"
+        >
+          <p class="mb-0">© 2024 "Книжковий магазин"</p>
+          <a href="#" class="text-white text-decoration-none"
+            >bookstore@gmail.com</a
+          >
+        </div>
+
+        <div
+          class="footer-middle col-sm-12 col-md-4 col-lg-4 order-2 order-sm-3 order-md-2 order-lg-2 d-flex justify-content-center align-items-center mt-5 mt-md-0 mt-lg-0"
+        >
+          <ul
+            class="d-flex flex-row flex-wrap justify-content-center flex-md-column flex-lg-column gap-3 text-center p-0 m-0"
+          >
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+
+        <div
+          class="footer-right col-sm-6 col-md-4 col-lg-4 order-3 order-sm-2 d-flex align-items-center justify-content-center justify-content-lg-end mt-5 mt-sm-0 m-md-0 m-lg-0"
+        >
+          <img src="images/logo.png" alt="Logo" />
+          <p class="m-0">Розробниця сайту - Челушкіна Валерія</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="feedback">
+      <div class="container text-center w-100">
+        <h2>Зворотний зв'язок</h2>
+        <div id="closefb" onclick="HideFeedback()">&#215;</div>
+        <label for="YourName">Ваше ім'я *</label>
+        <input
+          type="text"
+          id="YourName"
+          name="YourName"
+          required
+          placeholder="Введіть ім'я"
+        />
+
+        <label for="YourPhone">Телефон *</label>
+        <input
+          type="tel"
+          id="YourPhone"
+          name="YourPhone"
+          pattern="[0]{1}[0-9]{2}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+          required
+          placeholder="Введіть телефон"
+        />
+
+        <label for="YourEmail">Email *</label>
+        <input
+          type="email"
+          id="YourEmail"
+          name="YourEmail"
+          required
+          placeholder="Введіть Email"
+        />
+
+        <label for="YourMessage">Повідомлення</label>
+        <textarea name="Message" id="YourMessage"></textarea>
+        <div class="btn-send w-50 mx-auto mt-3 fs-4 text-white">НАДІСЛАТИ</div>
+      </div>
+    </div>
+
+    <script>
+      document.querySelectorAll(".custom-pagination .page").forEach((page) => {
+        page.addEventListener("click", function () {
+          document
+            .querySelector(".custom-pagination .page.active")
+            ?.classList.remove("active");
+          this.classList.add("active");
+        });
+      });
+
+      document
+        .querySelectorAll("#feedback input[required]")
+        .forEach((field) => {
+          field.addEventListener("input", function () {
+            if (field.classList.contains("error")) {
+              field.classList.remove("error");
+              field.placeholder = field.getAttribute(
+                "data-original-placeholder"
+              );
+              field.style.color = "";
+              field.style.fontStyle = "";
+            }
+          });
+        });
+
+      document
+        .querySelector(".btn-send")
+        .addEventListener("click", function () {
+          const fields = document.querySelectorAll("#feedback input[required]");
+          let isValid = true;
+
+          fields.forEach((field) => {
+            if (!field.hasAttribute("data-original-placeholder")) {
+              field.setAttribute(
+                "data-original-placeholder",
+                field.placeholder
+              );
+            }
+
+            if (!field.value.trim()) {
+              field.classList.add("error");
+              field.value = "";
+              field.placeholder = "Поле є обов'язковим для заповнення";
+              field.style.color = "#c0392b";
+              field.style.fontStyle = "italic";
+              isValid = false;
+            } else {
+              if (field.id === "YourPhone") {
+                let phonePattern = /^[0]{1}[0-9]{2}[0-9]{3}[0-9]{2}[0-9]{2}$/;
+                if (!phonePattern.test(field.value)) {
+                  field.classList.add("error");
+                  field.value = "";
+                  field.placeholder = "Формат: 0XXXXXXXXX";
+                  field.style.color = "#c0392b";
+                  field.style.fontStyle = "italic";
+                  isValid = false;
+                }
+              }
+
+              if (field.id === "YourEmail") {
+                let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(field.value)) {
+                  field.classList.add("error");
+                  field.value = "";
+                  field.placeholder = "Введіть коректний email";
+                  field.style.color = "#c0392b";
+                  field.style.fontStyle = "italic";
+                  isValid = false;
+                }
+              }
+            }
+          });
+
+          if (isValid) {
+            alert("Форма заповнена!");
+            HideFeedback();
+          }
+        });
+
+      function ShowFeedback() {
+        let feedbackDiv = document.getElementById("feedback");
+        let overlayDiv = document.getElementById("overlay");
+
+        feedback.classList.remove("fadeOut");
+        feedback.classList.add("fadeIn");
+        feedback.style.display = "block";
+
+        overlay.classList.remove("fadeOut");
+        overlay.classList.add("fadeIn");
+        overlay.style.display = "block";
+      }
+
+      function HideFeedback() {
+        let feedback = document.getElementById("feedback");
+        let overlay = document.getElementById("overlay");
+
+        feedback.classList.remove("fadeIn");
+        feedback.classList.add("fadeOut");
+
+        overlay.classList.remove("fadeIn");
+        overlay.classList.add("fadeOut");
+
+        setTimeout(() => {
+          feedback.style.display = "none";
+          overlay.style.display = "none";
+
+          feedback.classList.remove("fadeOut");
+          overlay.classList.remove("fadeOut");
+
+          let fields = document.querySelectorAll(
+            "#feedback input, #feedback textarea"
+          );
+          fields.forEach((field) => {
+            field.value = "";
+            field.placeholder = field.getAttribute("data-placeholder") || "";
+            field.classList.remove("error");
+            field.style.color = "";
+            field.style.fontStyle = "";
+          });
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

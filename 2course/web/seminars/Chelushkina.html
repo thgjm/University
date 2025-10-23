@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seminar4</title>
+
+    <style>
+      body {
+        height: 100%;
+        margin: 0;
+        background: linear-gradient(to right bottom, white, lightblue);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      .Block1 {
+        background: center / cover no-repeat
+          url(https://images.unsplash.com/photo-1445112098124-3e76dd67983c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FsbSUyMG9jZWFufGVufDB8fDB8fHww);
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        width: 600px;
+        height: 590px;
+      }
+
+      .Block2 {
+        background: center / cover no-repeat
+          url(https://images.unsplash.com/photo-1445112098124-3e76dd67983c?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FsbSUyMG9jZWFufGVufDB8fDB8fHww);
+        position: absolute;
+        top: 12px;
+        left: 885px;
+        height: 590px;
+        width: 600px;
+      }
+
+      .Block3 {
+        background: center / cover no-repeat
+          url(https://img.freepik.com/premium-photo/calm-blue-sea-waves-soft-surface-ocean-blue-sky_84176-1538.jpg);
+        position: absolute;
+        left: 450px;
+        top: 140px;
+        width: 600px;
+        height: 590px;
+
+      }
+
+      .MenuBlock {
+        position: absolute;
+        border-radius: 2px;
+        border: 1px black solid;
+        bottom: 0;
+        left: 4px;
+        width: 400px;
+        height: 260px;
+        padding: 3px;
+        margin: 5px;
+        background: linear-gradient(to right top, white, rgb(255, 213, 220));
+      }
+
+      .MenuContent {
+        width: 100%;
+      }
+
+      .MenuText {
+        font-size: 13px;
+      }
+
+      .SealImg {
+        width: 190px;
+        border: gray solid 2px;
+        box-sizing: border-box;
+        display: inline-block;
+        object-fit: contain;
+        float: left;
+        margin: 0px 5px 0px 0px;
+      }
+
+      .MenuInfo,
+      .MainMenuInfo{
+        background-color: lightgrey;
+        border: 1px black dashed;
+        border-radius: 5px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        gap: 5px;
+      }
+      
+      .MenuInfo div,
+      .MainMenuInfo div {
+        flex: 1;
+        padding: 5px;
+        font-size: 12px;
+        border: 1px black solid;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+        background-color: pink;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial;
+      }
+
+      .MenuInfo div:hover {
+        color: blue;
+      }
+
+      .MainMenuInfo div:hover {
+        background-color: mediumpurple;
+      }
+
+      .MenuInfo div:active {
+        color: pink;
+        background-color: blue;
+      }
+
+      .MainMenuInfo div:active {
+        color: black;
+        background-color: lightblue;
+      }
+
+      .MenuText a {
+        font-size: 15px;
+      }
+
+      .Sub-Block {
+        vertical-align: top;
+        text-align: center;
+        width: 400px;
+        margin-left: 9px;
+        margin-right: 0;
+        padding: 3px;
+        margin-top: 2px;
+      }
+      
+      .Sub-BlockImg {
+        width: 100%;
+        border: white solid 3px;
+        box-sizing: border-box;
+        object-fit: fill;
+      }
+
+      .ImgCaption {
+        display: block;
+        font-size: 17px;
+        color: white;
+      }
+
+      .Block1Imgs,
+      .Block2Imgs {
+        position: absolute;
+        left: 420px;
+        top: 6px;
+        bottom: 6px;
+        right: 6px;
+        text-align: center;
+      }
+
+      .Block1Imgs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 100px);
+        padding-top: 5px;
+      }
+
+      .Block2Imgs img {
+        width: 85%;
+        border: white solid 2px;
+        box-sizing: border-box;
+        object-fit: contain;
+        margin-top: 5px;
+      }
+
+      .Block2Caption {
+        font-size: 13px;
+        display: block;
+        margin: auto;
+        color: white;
+        width: 100px;
+        word-wrap: break-word;
+      }
+
+      .Block1Group {
+        vertical-align: top;
+        text-align: center;
+      }
+
+      .Block1Group img {
+        width:70px;
+        height: 70px;
+        object-fit: cover;
+        object-position: center;
+        border: white solid 2px;
+        box-sizing: border-box;
+      }
+
+      .Block1Group span {
+        font-size: 12px;
+        display: block;
+        margin: 0;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="MainContainer">
+      <div class="Block1">
+        <div class="Sub-Block">
+          <img
+            class="Sub-BlockImg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEPMuWWR_SLKWu7sYmF-MGpIzrcocZv0njIg&s"
+            alt="seal"
+          />
+          <span class="ImgCaption">This is a seal</span>
+        </div>
+        <div class="MenuBlock">
+          <div class="MenuInfo">
+            <div>About Them</div>
+            <div>Image</div>
+            <div>More</div>
+          </div>
+          <div class="MenuContent">
+            <img
+              class="SealImg"
+              src="https://www.telegraph.co.uk/content/dam/news/2016/11/16/seal_trans_NvBQzQNjv4BqRtvZRSV037_kYj9aGppl8KoSQRPSZoKNSSXquGEEDe0.jpg?imwidth=680"
+              alt="seal"
+            />
+            <div class="MenuText">
+              <p>
+                Seals are marine mammals that belong to the pinniped family.
+                They are well adapted to life in the water, with streamlined
+                bodies and strong flippers. Seals can be found in both Arctic
+                and Antarctic regions, as well as temperate oceans around the
+                world. Their thick layer of blubber keeps them warm in cold
+                waters. Many species of seals are social animals, living in
+                large colonies. However, some, like the leopard seal, prefer
+                solitary life. Seals primarily feed on fish and squid, using
+                their sharp teeth to catch prey.
+              </p>
+              <a href="#">Visit Website</a>
+            </div>
+          </div>
+        </div>
+        <div class="Block1Imgs">
+          <div class="Block1Group">
+            <img
+              src="https://www.sealrescueireland.org/wp-content/smush-webp/2024/02/L1A9369crop-Edit-1-4-e1708083582646.jpg.webp"
+              alt=""
+            />
+            <span>1:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg"
+              alt=""
+            />
+            <span>2:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/manatee-teaser-1.jpg.optimal.jpg"
+              alt=""
+            />
+            <span>3:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://www.georgiaaquarium.org/wp-content/uploads/2018/08/common-bottlenose-dolphin.jpg"
+              alt=""
+            />
+            <span>4:00 AM</span>
+          </div>
+
+          <div class="Block1Group">
+            <img
+              src="https://www.sealrescueireland.org/wp-content/smush-webp/2024/02/L1A9369crop-Edit-1-4-e1708083582646.jpg.webp"
+              alt=""
+            />
+            <span>5:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg"
+              alt=""
+            />
+            <span>6:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/manatee-teaser-1.jpg.optimal.jpg"
+              alt=""
+            />
+            <span>7:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://www.georgiaaquarium.org/wp-content/uploads/2018/08/common-bottlenose-dolphin.jpg"
+              alt=""
+            />
+            <span>8:00 AM</span>
+          </div>
+
+          <div class="Block1Group">
+            <img
+              src="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/manatee-teaser-1.jpg.optimal.jpg"
+              alt=""
+            />
+            <span>9:00 AM</span>
+          </div>
+          <div class="Block1Group">
+            <img
+              src="https://www.georgiaaquarium.org/wp-content/uploads/2018/08/common-bottlenose-dolphin.jpg"
+              alt=""
+            />
+            <span>10:00 AM</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="Block2">
+        <div class="Sub-Block">
+          <img
+            class="Sub-BlockImg"
+            src="https://people.com/thmb/bbIVqwja79FNggpMxWFcpnC6Tcc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/otter-1-2000-1-77e1b6014e484b2b897864d12d76c296.jpg"
+            alt="otter"
+          />
+          <span class="ImgCaption">This is an otter</span>
+        </div>
+        <div class="MenuBlock">
+          <div class="MenuInfo">
+            <div>About Them</div>
+            <div>Image</div>
+            <div>More</div>
+          </div>
+          <div class="MenuContent">
+            <img
+              class="SealImg"
+              src="https://www.telegraph.co.uk/content/dam/news/2016/11/16/seal_trans_NvBQzQNjv4BqRtvZRSV037_kYj9aGppl8KoSQRPSZoKNSSXquGEEDe0.jpg?imwidth=680"
+              alt="seal"
+            />
+            <div class="MenuText">
+              <p>
+                Seals are marine mammals that belong to the pinniped family.
+                They are well adapted to life in the water, with streamlined
+                bodies and strong flippers. Seals can be found in both Arctic
+                and Antarctic regions, as well as temperate oceans around the
+                world. Their thick layer of blubber keeps them warm in cold
+                waters. Many species of seals are social animals, living in
+                large colonies. However, some, like the leopard seal, prefer
+                solitary life. Seals primarily feed on fish and squid, using
+                their sharp teeth to catch prey.
+              </p>
+              <a href="#">Visit Website</a>
+            </div>
+          </div>
+        </div>
+        <div class="Block2Imgs">
+          <img
+            src="https://people.com/thmb/bbIVqwja79FNggpMxWFcpnC6Tcc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(999x0:1001x2)/otter-1-2000-1-77e1b6014e484b2b897864d12d76c296.jpg"
+            alt="otter"
+          />
+          <span class="Block2Caption">Otters are very cute creatures</span>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEPMuWWR_SLKWu7sYmF-MGpIzrcocZv0njIg&s"
+            alt="seal"
+          />
+          <span class="Block2Caption">Seals are very cute creatures</span>
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdCPmeePXjp45PVY_hfsvWDsh63zQU9SbDVw&s"
+            alt="manatee"
+          />
+          <span class="Block2Caption">Manatees are very cure creatures</span>
+          <img
+            src="https://2seewhales.com/wp-content/uploads/2019/03/dolphin-906176_1920.jpg"
+            alt="dolphin"
+          />
+          <span class="Block2Caption">Dolphins are very cute creatures</span>
+        </div>
+      </div>
+
+      <div class="Block3">
+        <div class="Sub-Block">
+          <img
+            class="Sub-BlockImg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdCPmeePXjp45PVY_hfsvWDsh63zQU9SbDVw&s"
+            alt="seal"
+          />
+        </div>
+        <div class="MenuBlock">
+          <div class="MainMenuInfo">
+            <div>About Them</div>
+            <div>Image</div>
+            <div>More</div>
+          </div>
+          <div class="MenuContent">
+            <img
+              class="SealImg"
+              src="https://www.telegraph.co.uk/content/dam/news/2016/11/16/seal_trans_NvBQzQNjv4BqRtvZRSV037_kYj9aGppl8KoSQRPSZoKNSSXquGEEDe0.jpg?imwidth=680"
+              alt="seal"
+            />
+            <div class="MenuText">
+              <p>
+                Seals are marine mammals that belong to the pinniped family.
+                They are well adapted to life in the water, with streamlined
+                bodies and strong flippers. Seals can be found in both Arctic
+                and Antarctic regions, as well as temperate oceans around the
+                world. Their thick layer of blubber keeps them warm in cold
+                waters. Many species of seals are social animals, living in
+                large colonies. However, some, like the leopard seal, prefer
+                solitary life. Seals primarily feed on fish and squid, using
+                their sharp teeth to catch prey.
+              </p>
+              <a href="#">Visit Website</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

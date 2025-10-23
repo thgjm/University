@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <style>
+      body {
+        background-color: azure;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+        height: 100vh;
+      }
+
+      .alarm {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 350px;
+        text-align: center;
+      }
+
+      input {
+        border: 1px solid gray;
+        border-radius: 5px;
+        font-size: 17px;
+        color: black;
+        background-color: white;
+        box-sizing: border-box;
+        transition: border-color 0.15s, box-shadow 0.15s;
+        cursor: pointer;
+      }
+
+      input:focus {
+        border-color: rgb(255, 0, 200);
+        box-shadow: 0 0 5px rgba(255, 0, 200, 0.5);
+        outline: none;
+      }
+
+      input,
+      button {
+        padding: 10px;
+        margin-bottom: 15px;
+        width: 90%;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        background: pink;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        position: relative;
+      }
+
+      button {
+        background-color: pink;
+        border: 1px black solid;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      button:active {
+        opacity: 0.7;
+      }
+
+      h3 {
+        margin-bottom: 15px;
+        margin-top: 0px;
+      }
+
+      .delete {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 25px;
+        color: crimson;
+        text-align: center;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .delete:hover {
+        color: darkred;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="alarm">
+      <h2>Будильник</h2>
+      <p>Оберіть дату і час:</p>
+      <input type="datetime-local" id="Time" />
+      <button onclick="addAlarm()">Додати будильник</button>
+
+      <h3>Заведені будильники:</h3>
+      <ul id="alarmList"></ul>
+    </div>
+
+    <script>
+      let alarms = [];
+
+      function loadAlarms() {
+        let stored = localStorage.getItem("alarms");
+        if (stored) {
+          alarms = JSON.parse(stored).map((a) => ({
+            time: new Date(a.time),
+            triggered: a.triggered,
+          }));
+        }
+      }
+
+      function saveAlarms() {
+        localStorage.setItem("alarms", JSON.stringify(alarms));
+      }
+
+      function addAlarm() {
+        let inputTime = document.getElementById("Time");
+        let time = new Date(inputTime.value);
+
+        if (isNaN(time.getTime())) {
+          alert("Неправильний введений формат.");
+          return;
+        }
+
+        alarms.push({ time, triggered: false });
+        saveAlarms();
+        updateList();
+        inputTime.value = "";
+      }
+
+      function deleteAlarm(index) {
+        if (confirm("Ви впевнені, що хочете видалити цей будильник?")) {
+          alarms.splice(index, 1);
+          saveAlarms();
+          updateList();
+        }
+      }
+
+      function updateList() {
+        let list = document.getElementById("alarmList");
+        list.innerHTML = "";
+
+        alarms.forEach((alarm, index) => {
+          let li = document.createElement("li");
+
+          let text = document.createElement("span");
+          text.textContent =
+            alarm.time.toLocaleString() +
+            (alarm.triggered ? " (спрацював)" : "");
+
+          let cross = document.createElement("span");
+          cross.textContent = "\u00d7";
+          cross.className = "delete";
+          cross.onclick = () => deleteAlarm(index);
+
+          li.appendChild(text);
+          li.appendChild(cross);
+          list.appendChild(li);
+        });
+      }
+
+      setInterval(() => {
+        let now = new Date();
+        alarms.forEach((alarm, index) => {
+          if (!alarm.triggered && now >= alarm.time) {
+            alert("Спрацював будильник на " + alarm.time.toLocaleString());
+            alarm.triggered = true;
+            saveAlarms();
+            updateList();
+          }
+        });
+      }, 1000);
+
+      loadAlarms();
+      updateList();
+    </script>
+  </body>
+</html>

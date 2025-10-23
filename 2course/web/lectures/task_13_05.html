@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        height: 100vh;
+        margin: 0;
+        background-color: antiquewhite;
+      }
+
+      h1 {
+        margin-bottom: 80px;
+      }
+
+      .wrapper {
+        display: flex;
+        align-items: center;
+        align-items: stretch;
+      }
+
+      .scale {
+        position: relative;
+        width: 40px;
+        margin-right: 10px;
+        text-align: right;
+      }
+
+      .scale p {
+        position: absolute;
+        right: 0px;
+        margin: 0;
+        transform: translateY(50%);
+      }
+
+      .gistogram {
+        height: 420px;
+        width: 600px;
+        border-left: 2px solid black;
+        border-bottom: 2px solid black;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        position: relative;
+      }
+
+      .block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .block p {
+        margin: 0;
+        font-weight: bold;
+      }
+
+      .bar {
+        bottom: 0;
+        width: 80px;
+        background-color: lightpink;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Продажі з книг</h1>
+    <div class="wrapper">
+      <div class="scale">
+        <p style="bottom: 350px">2500</p>
+        <p style="bottom: 280px">2000</p>
+        <p style="bottom: 210px">1500</p>
+        <p style="bottom: 140px">1000</p>
+        <p style="bottom: 70px">500</p>
+        <p style="bottom: 0px">0</p>
+      </div>
+      <div class="gistogram"></div>
+    </div>
+
+    <script>
+      const data = [
+        { category: "Фентезі", value: 1000 },
+        { category: "Романтика", value: 2700 },
+        { category: "Біографія", value: 400 },
+        { category: "Фантастика", value: 1800 },
+      ];
+
+      data.forEach((element) => {
+        const block = document.createElement("div");
+        block.className = "block";
+
+        const categoryName = document.createElement("p");
+        categoryName.innerText = element.category;
+
+        const bar = document.createElement("div");
+        bar.className = "bar";
+        bar.innerText = element.value;
+        bar.style.height = element.value * 0.14 + "px";
+
+        block.append(categoryName);
+        block.append(bar);
+
+        document.querySelector(".gistogram").appendChild(block);
+      });
+    </script>
+  </body>
+</html>

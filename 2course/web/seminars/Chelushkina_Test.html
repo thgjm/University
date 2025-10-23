@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ferrets</title>
+  <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/427/427458.png">
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      background: linear-gradient(to right top, white, pink);
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .TopSection,
+    .BottomSection,
+    .MainSection,
+    .LeftSection,
+    .TopLine {
+      margin: 0;
+      padding: 0;
+    }
+
+    .TopLine {
+      position: relative;
+      height: 25px;
+      width: 40%;
+      left: 30%;
+      background-color: black;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .TopSection {
+      position: absolute;
+      width: 100%;
+      height: 150px;
+      background-color: gray;
+      top: 0;
+      opacity: 0.3;
+      clip-path: polygon(0% 0%, 0% 100%, 100% 80%, 100% 0%);
+      z-index: 500;
+    }
+
+    .MainSection {
+      position: relative;
+      left: 30%;
+      width: 40%;
+      background-color: hotpink;
+      height: calc(100% - 25px);
+      /*overflow: hidden;*/
+      display: flex;
+    }
+
+    .BottomSection {
+      position: absolute;
+      bottom: 0;
+      height: 150px;
+      width: 100%;
+      clip-path: polygon(0% 100%, 0% 40%, 100% 0%, 100% 100%);
+      background-color: gray;
+      opacity: 0.3;
+      z-index: 500;
+    }
+
+    .LeftSection {
+      position: relative;
+      width: 30%;
+      background-color: rgba(255, 209, 223, 0.6);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-end;
+    }
+
+    .LeftSection div {
+      width: 80%;
+      height: 100px;
+      z-index: 1000;
+    }
+
+    .ChildDiv img,
+    .ChildDiv1 img {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .ChildDiv1 {
+      align-self: center;
+    }
+
+    .Img1 {
+      box-shadow: 8px 6px 15px black;
+    }
+
+    .RightSection {
+      position: relative;
+      width: 70%;
+      height: 100%;
+    }
+
+    .TopText {
+      position: relative;
+      padding: 0;
+      width: 90%;
+      margin: auto;
+      font-size: 12px;
+      z-index: 600;
+      overflow-x: hidden;
+      overflow: auto;
+      max-height: 130px;
+    }
+
+    .TopImg {
+      position: relative;
+      padding: 0;
+      margin: auto;
+      width: 90%;
+      margin-top: 15px;
+    }
+
+    .TopImg img {
+      object-fit: contain;
+      width: 100%;
+
+    }
+
+    .FirstPart{
+      height:50%;
+      margin:0;
+      padding:0;
+      margin-top:10px;
+      margin-bottom: 15px;
+    }
+
+    .SecondPart {
+      position: relative;
+      width: 90%;
+      display: flex;
+      margin: auto;
+      padding: 0;
+      gap:5px;
+      justify-content: space-between;
+      height:45%;
+
+    }
+
+    .LeftText,
+    .RightText {
+      width: 49%;
+      height: 100%;
+      overflow-x: hidden;
+      z-index: 600;
+      font-size: 10px;
+      overflow: auto;
+    }
+
+    .RightText {}
+
+    ul {
+      padding-left: 0px;
+    }
+
+    li {
+      padding-bottom: 10px;
+    }
+
+    li:before {
+      content: "~";
+      padding-right: 5px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="TopLine"></div>
+  <div class="MainSection">
+    <div class="TopSection"></div>
+    <div class="LeftSection">
+      <div class="ChildDiv1">
+        <img class="Img1"
+          src="https://i0.wp.com/exoticbirdhospital.com/wp-content/uploads/2015/03/ferretjump.jpg?fit=600%2C450&ssl=1"
+          alt="ferret1">
+      </div>
+      <div class="ChildDiv">
+        <img src="https://vetmed.tamu.edu/news/wp-content/uploads/sites/9/2020/05/Ferret-Pet-Talk.jpeg" alt="ferret2">
+      </div>
+      <div class="ChildDiv">
+        <img
+          src="https://pethelpful.com/.image/w_3840,q_auto:good,c_fill,ar_4:3/MTk3MDk3MjkyMDY5NjEwNTc5/disadvantages-of-keeping-ferrets-as-pets.jpg"
+          alt="ferret3">
+      </div>
+      <div class="ChildDiv">
+        <img src="https://www.vets4pets.com/siteassets/species/ferret/ferret-in-home.jpg" alt="ferret4">
+      </div>
+    </div>
+
+    <div class="RightSection">
+      <div class="FirstPart">
+      <div class="TopText">
+        The ferret (Mustela furo) is a small, domesticated species belonging to
+        the family Mustelidae. The ferret is most likely a domesticated form of
+        the wild European polecat (Mustela putorius), as evidenced by the
+        ferret's ability to interbreed with European polecats and produce hybrid
+        offspring. Physically, ferrets resemble other mustelids because of their
+        long, slender bodies. Including their tail, the average length of a
+        ferret is about 50 cm (20 in); they weigh between 0.7 and 2.0 kg (1.5
+        and 4.4 lb); and their fur can be black, brown, white, or a mixture of
+        those colours.
+      </div>
+      <div class="TopImg">
+        <img
+          src="https://media.istockphoto.com/id/1171481674/photo/ferret-on-a-lead-in-grass.jpg?s=612x612&w=0&k=20&c=eF2PtAiGLjNJReoDFRdo3-JB8NV_LEyAmlx0wJTc9bk="
+          alt="ferret" />
+      </div>
+    </div>
+      <div class="SecondPart">
+        <div class="LeftText">
+          <h4>Characteristics</h4>
+          <p>
+            Ferret profile Ferrets have a typical mustelid body-shape, being long
+            and slender. Their average length is about 50 cm (20 in) including a
+            13 cm (5.1 in) tail. Their pelage has various colorations including
+            brown, black, white or mixed. They weigh between 0.7 and 2.0 kg (1.5
+            and 4.4 lb) and are sexually dimorphic as the males are substantially
+            larger than females.
+          </p>
+          <h4>Behavior</h4>
+          <p>
+            Ferrets spend 14–18 hours a day asleep and are most active around the
+            hours of dawn and dusk, meaning they are crepuscular.[10] If they are
+            caged, they should be taken out daily to exercise and satisfy their
+            curiosity; they need at least an hour and a place to play.[11] Unlike
+            their polecat ancestors, which are solitary animals, most ferrets will
+            live happily in social groups. They are territorial, like to burrow,
+            and prefer to sleep in an enclosed area.[12]
+          </p>
+          <h4>Diet</h4>
+          <p>
+            Ferrets are obligate carnivores.[18] The natural diet of their wild
+            ancestors consisted of whole small prey, including meat, organs,
+            bones, skin, feathers and fur.[19] Ferrets have short digestive
+            systems and a quick metabolism, so they need to eat frequently.
+            Prepared dry foods consisting almost entirely of meat (including
+            high-grade cat food, although specialized ferret food is increasingly
+            available and preferable)[20] provide the most nutritional value.
+          </p>
+          <h4>Health</h4>
+          <p>
+            Ferrets are known to suffer from several distinct health problems.
+            Among the most common are
+            <span style="background-color: yellow">cancers affecting the adrenal glands, pancreas and lymphatic
+              system.</span>
+          </p>
+        </div>
+        <div class="RightText">
+          <h4>Dentition</h4>
+          <p>
+            Ferrets have four types of teeth (the number includes maxillary
+            (upper) and mandibular (lower) teeth) with a dental formula of 3.1.4.1
+            3.1.4.2 :
+          </p>
+          <p>
+          <ul>
+            <li>Twelve small incisor teeth (only 2–3 mm [3⁄32–1⁄8 in] long) located between the canines in the front of
+              the mouth. These are used for grooming.</li>
+            <li>Four canines used for killing prey.</li>
+            <li>Twelve premolar teeth that the ferret uses to chew food—located at the sides of the mouth, directly
+              behind
+              the canines. The ferret uses these teeth to cut through flesh, using them in a scissors action to cut the
+              meat into digestible chunks.</li>
+            <li>Six molars (two on top and four on the bottom) at the far back of the mouth are used to crush food.</li>
+          </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="BottomSection"></div>
+  </div>
+</body>
+
+</html>

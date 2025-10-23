@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>4 семінар</title>
+	<style type="text/css">
+	
+	.block_base {
+		width: 40%;
+		padding: 40px 20px 20px 20px;
+		display: flex;
+		flex-flow: row;
+		gap: 25px;
+	}
+	
+	.block_left {
+		background-image: url('https://files.oaiusercontent.com/file-LfarsiSt392q1bMPfTNW7b?se=2025-03-05T18%3A38%3A41Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D73f15b2a-1d68-44c0-bef8-4dabf3926b7a.webp&sig=svLtnePQuU5h6uVYzZLzn7/YZ%2BLr9PhiyTEsDwgtPBA%3D');
+		background-size: cover;
+		
+		position: absolute;
+		top: 2%;
+		left: 2%;
+	}
+	.block_center {
+		background-image: url('https://files.oaiusercontent.com/file-WEjJxjf5mx1ZdPkLaJnDMi?se=2025-03-05T18%3A37%3A59Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D3347cf9a-88ab-4663-98af-4325511ed980.webp&sig=C%2BuU0EmFfXOc8XGaEhp5LHzJLrJ43jhckBaveGfjqRs%3D');
+		background-size: cover;
+		
+		position: absolute;
+		top: 20%;
+		right: 30%;
+	}
+	.block_right {
+		background-image: url('https://files.oaiusercontent.com/file-VABCtiLpYzgNcFEKHFfHY2?se=2025-03-05T18%3A37%3A22Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D77790c08-f3d9-4d86-b155-a253e31da011.webp&sig=2s1Y9ob0Zy4gjLejmhD%2BL/sgnj7iOlYWJmQh3jorZG4%3D');
+		background-size: cover;
+		
+		position: absolute;
+		top: 2%;
+		right: 2%;
+	}
+	
+	.block_content {
+		width: 60%;
+	}
+	
+	.block_content_right {
+		width: 40%;
+	}
+
+	.block_image {
+		vertical-align: top;
+		border: 5px solid rgb(139, 139, 139);
+		box-sizing: border-box;
+		
+		position: relative;
+		width: 100%;
+	}
+	
+	.column_single {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+	.column_single img {
+		border: 4px solid grey;
+		width: 100%;
+		height: 60%;
+		box-sizing: border-box;
+	}
+
+	.column_multiple {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 5px;
+	}
+	.column_multiple img {
+		border: 4px solid grey;
+		width: 100%;
+		height: 50%;
+		box-sizing: border-box;
+	}
+	.colunm_text {
+		color: white;
+		text-align: left;
+	}
+
+	
+	.window {
+		display: inline-block;
+		width: 100%;
+		background-color: white;
+		border-radius: 5px;
+		box-sizing: border-box;
+		padding: 5px 5px;
+		margin-top: 20px;
+	}
+	
+	.menu {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		padding: 5px 5px 0px 5px;
+		gap: 5px;
+		background-color: #D3D3D3;
+	}
+	.menu.gradient {
+		background-image: linear-gradient(to top, #004eff, #0062fd, #0072f6, #007fec, #008adf, #0092dd, #0099da, #009fd6, #00a6e0, #00aeea, #00b5f5, #00bdff);
+	}
+	.item {
+		color: white;
+		display: inline-flex;
+		text-align: center;
+		padding: 5px 25px;
+		border: 1px solid grey;
+		border-bottom: none;
+		border-top-right-radius: 3px;
+		border-top-left-radius: 3px;
+	}
+	.item.item_active {
+		color: red;
+	}
+	.item:hover {
+		color: rgb(89, 0, 255);
+	}
+	.menu.gradient .item {
+		color: white;
+		background-image: linear-gradient(to bottom, #00bdff, #00abff, #0097ff, #0080ff, #0066ff);
+	}
+	.gradient .item.item_active {
+		background-image: linear-gradient(0deg, rgba(0,195,75,1) 0%, rgba(0,255,29,1) 50%, rgba(7,255,131,1) 100%);
+	}
+	.gradient .item:hover {
+		background-image: linear-gradient(to top, #ffbc00, #f3cd00, #e2de00, #cdef00, #b0ff00);
+	}
+	
+	.content {
+		padding: 20px;
+		background-color: white;
+	}
+	
+	.content_image {
+		max-width: 50%;
+		border: #d5d5d5 5px solid;
+		box-sizing: border-box;
+		float: left;
+		margin: 0px 10px 10px 0;
+	}
+	
+	.image_description {
+		word-break: break-word;
+		color: white;
+		text-align: center;
+		margin-top: 5px;
+	}
+	
+	</style>
+</head>
+
+<body>
+
+<div class="block_base block_left">
+	<div class="block_content">
+		<img src="https://img.freepik.com/free-vector/jumping-girl-cartoon-character_1308-140739.jpg" class="block_image">
+		<div class="image_description">Дитина</div>
+		
+		<div class="window">
+			<div class="menu">
+				<div class="item item_active">Про дитину</div>
+				<div class="item">Зображення</div>
+				<div class="item">Інше</div>
+			</div>
+			
+			<div class="content">
+				<img class="content_image" src="https://twam.ru/wp-content/uploads/2024/02/krasivye-multiashnye-devochki-49.webp"></img>
+				Привіт
+				<p><a href="https://google.com">Відвідати вебсайт</a></p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="block_content_right column_multiple">
+		<div>
+			<img src="https://s3.stroi-news.ru/img/multyashnii-kartinki-1.jpg">
+			<div class="colunm_text">1:00 am</div>
+		</div>
+		<div>
+			<img src="https://img.freepik.com/free-vector/cheerful-cartoon-squirrel-illustration_1308-165902.jpg">
+			<div class="colunm_text">2:00 am</div>
+		</div>
+		<div>
+			<img src="https://s3.stroi-news.ru/img/multyashnie-zaichiki-kartinki-1.jpg">
+			<div class="colunm_text">3:00 am</div>
+		</div>
+		<div>
+			<img src="https://img.freepik.com/premium-vector/cute-cartoon-animals-raccoon-isolated_214720-816.jpg">
+			<div class="colunm_text">4:00 am</div>
+  		</div>
+ 		<div>
+			<img src="https://png.pngtree.com/png-clipart/20190705/original/pngtree-cute-cartoon-hand-painted-pig-png-image_4223793.jpg">
+			<div class="colunm_text">5:00 am</div>
+		</div>
+		<div>
+			<img src="https://st.depositphotos.com/1787196/1327/i/450/depositphotos_13270628-stock-illustration-3d-cartoon-bird.jpg">
+			<div class="colunm_text">6:00 am</div>
+		</div>
+		<div>
+			<img src="https://i.pinimg.com/736x/45/03/fb/4503fb444c9a791b432b72f57aac4cc2.jpg">
+			<div class="colunm_text">7:00 am</div>
+		</div>
+		<div>
+			<img src="https://st.depositphotos.com/1787196/1330/i/450/depositphotos_13303566-stock-illustration-cute-furry-alien.jpg">
+			<div class="colunm_text">8:00 am</div>
+		</div>
+		<div>
+			<img src="https://st.depositphotos.com/1036149/3347/i/450/depositphotos_33472707-stock-photo-giraffe.jpg">
+			<div class="colunm_text">9:00 am</div>
+		</div>
+		<div>
+			<img src="https://img.pikbest.com/png-images/20240614/cartoon-animals-in-cute-sticker-format-_10620519.png!w700wp">
+			<div class="colunm_text">10:00 am</div>
+		</div>
+	</div>
+</div>
+
+<div class="block_base block_right">
+	<div class="block_content">
+		<img src="https://twam.ru/wp-content/uploads/2024/02/multiashnye-devochki-227.webp" class="block_image">
+		<div class="image_description">Дівчинка</div>
+
+		<div class="window">
+			<div class="menu">
+				<div class="item item_active">Про дівчинку</div>
+				<div class="item">Зображення</div>
+				<div class="item">Інше</div>
+			</div>
+			
+			<div class="content">
+				<img class="content_image" src="https://i.pinimg.com/564x/6f/e0/ac/6fe0ac0cc25ab4da43026d4372f6d965.jpg"></img>
+				Привіт
+				<p><a href="https://google.com">Відвідати сайт</a></p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="block_content_right column_single">
+		<div>
+			<img src="https://twam.ru/wp-content/uploads/2024/02/krasivye-multiashnye-devochki-51.webp">
+			<div class="colunm_text">(7:00am to 12:00pm)<br>Morning</div>
+		</div>
+		<div>
+			<img src="https://twam.ru/wp-content/uploads/2024/02/multiashnye-devochki-226.webp">
+			<div class="colunm_text">(12:00am to 6:00pm)<br>Afternoon</div>
+		</div>
+		<div>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwiesXAmAnZIh5bKQDqQm6bAu5LRJnfGV1tw&s">
+			<div class="colunm_text">(6:00pm to 12:00am)<br>Evening</div>
+		</div>
+	</div>
+</div>
+
+<div class="block_base block_center">
+	<div class="block_content">
+		<img src="https://sotni.ru/wp-content/uploads/2023/08/slonenok-dambo-3.webp" class="block_image">
+		
+		<div class="window">
+			<div class="menu gradient">
+				<div class="item item_active">О рибках</div>
+				<div class="item">Зображення</div>
+				<div class="item">Інше</div>
+			</div>
+			
+			<div class="content">
+				<img class="content_image" src="https://img.lovepik.com/png/20231112/bait-clipart-3d-animated-cartoon-fish-with-sad-eyes-on_569910_wh1200.png"></img>
+				Привіт
+				<p><a href="https://google.com">Відвідати сайт</a></p>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+</body>
+</html>

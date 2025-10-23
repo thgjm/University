@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seminar3</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      fieldset {
+        width: 450px;
+        margin-top: 10px;
+      }
+
+      .ContactForm,
+      .PersonalInfo,
+      .AnimalChoice {
+        padding: 5px;
+        padding-bottom: 0px;
+      }
+      .AnimalChoice {
+        display: grid;
+        grid-template-columns: repeat(4, 90px);
+        grid-template-rows: repeat(2, auto);
+        justify-content: space-between;
+      }
+
+      .AnimalChoice div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      .ContactForm-block,
+      .PersonalInfo-block {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+
+      legend {
+        font-family: "Roboto Slab", serif;
+        font-size: 15px;
+      }
+
+      label {
+        width: 100px;
+        font-size: 11px;
+        line-height: 13px;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      select {
+        width: 200px;
+        font-size: 10px;
+        height: 12px;
+      }
+
+      select {
+        height: 17px;
+      }
+
+      input[type="checkbox"] {
+        width: 15px;
+        height: 15px;
+      }
+
+      textarea {
+        height: 75px;
+        width: 200px;
+        font-size: 10px;
+      }
+
+      p {
+        font-family: "Times New Roman", Times, serif;
+        font-style: italic;
+        color: gray;
+        font-size: 13px;
+      }
+
+      .required {
+        color: red;
+      }
+
+      h1 {
+        font-size: 28px;
+        margin-top: 5px;
+      }
+
+      .MainText {
+        text-align: left;
+        width: 470px;
+        line-height: 10px;
+      }
+
+      button {
+        font-size: 12px;
+        margin-top: 5px;
+        margin-left: 2px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="MainText">
+        <h1>Форма заявки на роботу в зоопарку</h1>
+        <p>
+          Будь ласка, заповніть форму. Обов'язкові поля відмічені<span
+            class="required"
+            >*</span
+          >
+        </p>
+      </div>
+
+      <fieldset>
+        <legend>Контактна інформація</legend>
+        <div class="ContactForm">
+          <div class="ContactForm-block">
+            <label>Ім'я<span class="required">*</span></label>
+            <input type="text" />
+          </div>
+          <div class="ContactForm-block">
+            <label>Телефон</label>
+            <input type="text" />
+          </div>
+          <div class="ContactForm-block">
+            <label>E-mail<span class="required">*</span></label>
+            <input type="email" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Персональна інформація</legend>
+        <div class="PersonalInfo">
+          <div class="PersonalInfo-block">
+            <label>Вік<span class="required">*</span></label>
+            <input type="number" />
+          </div>
+          <div class="PersonalInfo-block">
+            <label>Стать</label>
+            <select>
+              <option value="female">Жіноча</option>
+              <option value="male">Чоловіча</option>
+            </select>
+          </div>
+          <div class="PersonalInfo-block">
+            <label>Перерахуйте особисті якості</label>
+            <textarea></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Виберіть улюблених тварин:</legend>
+        <div class="AnimalChoice">
+          <div>
+            <input type="checkbox" id="zebra" />
+            <label for="zebra">Зебра</label>
+          </div>
+          <div>
+            <input type="checkbox" id="elephant" />
+            <label for="elephant">Слон</label>
+          </div>
+          <div>
+            <input type="checkbox" id="tiger" />
+            <label for="tiger">Тигр</label>
+          </div>
+          <div>
+            <input type="checkbox" id="person" />
+            <label for="person">Людина</label>
+          </div>
+          <div>
+            <input type="checkbox" id="skunk" />
+            <label for="skunk">Скунс</label>
+          </div>
+          <div>
+            <input type="checkbox" id="lion" />
+            <label for="lion">Лев</label>
+          </div>
+          <div>
+            <input type="checkbox" id="rhino" />
+            <label for="rhino">Носоріг</label>
+          </div>
+          <div>
+            <input type="checkbox" id="turtle" />
+            <label for="turtle">Черепаха</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="Button-block">
+        <button>Відправити</button>
+      </div>
+    </div>
+  </body>
+</html>

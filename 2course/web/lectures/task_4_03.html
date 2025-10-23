@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        padding: 5px;
+        align-content: stretch;
+        align-items: stretch;
+        min-height: 100vh;
+      }
+
+      .container div {
+        flex: 1 1 100px;
+        border: black solid 1px;
+      }
+
+      .block1 {
+        background-color: aqua;
+      }
+      .block2 {
+        background-color: yellow;
+      }
+      .block3 {
+        background-color: deeppink;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="block1"></div>
+      <div class="block1"></div>
+      <div class="block1"></div>
+      <div class="block2"></div>
+      <div class="block2"></div>
+      <div class="block2"></div>
+      <div class="block3"></div>
+      <div class="block3"></div>
+    </div>
+  </body>
+</html>

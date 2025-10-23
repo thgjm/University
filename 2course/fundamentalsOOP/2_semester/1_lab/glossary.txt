@@ -1,0 +1,33 @@
+//original code source to this semester's educational project: https://github.com/IriskaIK/yet-another-orm-implementation
+
+
+Project Glossary:
+
+1. Core Components:
+  BaseModel: The fundamental class that all entity models inherit from, providing basic CRUD operations.
+  Connection: Manages database connections and query execution.
+  QueryBuilder: Constructs SQL queries programmatically.
+  Metadata: Handles entity metadata and reflection information.
+  Decorators: Provide annotations for defining entity properties and relationships.
+  Drivers: Database-specific implementations for different database systems.
+
+2. Key Concepts:
+  Entity: A class that represents a database table.
+  Repository: A class that handles database operations for a specific entity.
+  Relationship: Connections between different entities (One-to-One, One-to-Many, Many-to-Many).
+  Migration: Database schema version control.
+  Query: A request for data manipulation or retrieval from the database.
+
+3. Operations:
+  CRUD: Create, Read, Update, Delete operations.
+  Transaction: A sequence of operations that should be executed as a single unit.
+  Connection Pooling: Managing and reusing database connections.
+  Query Building: Constructing database queries programmatically.
+  Result Mapping: Converting database results to TypeScript objects.
+
+4. Technical Terms:
+  ORM: Object-Relational Mapping.
+  DI: Dependency Injection.
+  DTO: Data Transfer Object.
+  Repository Pattern: Design pattern for data access abstraction.
+  Active Record Pattern: Pattern where model classes handle database operations.

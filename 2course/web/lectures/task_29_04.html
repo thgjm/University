@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task</title>
+
+    <style>
+      p {
+        font-size: 25px;
+        margin: 10px;
+        margin-left:0;
+      }
+
+      input,
+      label {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-left:0;
+      }
+
+      button {
+        font-size: 18px;
+        margin-top: 20px;
+        margin-left:0;
+        padding:10px;
+        background-color: lightpink;
+        border:1px black solid;
+        border-radius:10px;
+      }
+
+      div{
+        margin-top:30px;
+        margin-left:15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Page visited:</p>
+      <p id="DateTimeOutput"></p>
+      <p>Time spent on here: <span id="TimeSpent">0s</span></p>
+      <p>Previous visit duration: <span id="PreviousTime">—</span></p>
+      <label>Select date: <input type="datetime-local" id="date1" /> </label><br />
+      <button onclick="CountTime()">Count time</button>
+      <p id="CountedTimeOutput"></p>
+    </div>
+
+    <script>
+          let dateNow = new Date();
+          let hours = dateNow.getHours().toString().padStart(2, "0");
+          let minutes = dateNow.getMinutes().toString().padStart(2, "0");
+          let seconds = dateNow.getSeconds().toString().padStart(2, "0");
+          let day = dateNow.getDate().toString().padStart(2, "0");
+          let month = (dateNow.getMonth() + 1).toString().padStart(2, "0");
+          let year = dateNow.getFullYear();
+          let daysOfWeek = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ];
+          let weekday = daysOfWeek[dateNow.getDay()];
+          let timeOfDay = "";
+          if (hours < 6) {
+            timeOfDay = "Night";
+          } else if (hours < 12) {
+            timeOfDay = "Morning";
+          } else if (hours < 18) {
+            timeOfDay = "Afternoon";
+          } else {
+            timeOfDay = "Evening";
+          }
+          let result = `${day}.${month}.${year} ${hours}:${minutes}:${seconds} (${weekday}) - ${timeOfDay}`;
+          document.getElementById("DateTimeOutput").textContent = result;
+
+          const previousTime = localStorage.getItem("lastVisitSeconds") || 0;
+          document.getElementById("PreviousTime").textContent = `${previousTime}s`;
+
+          let secondsSpent = 0;
+          const timeSpentElement = document.getElementById("TimeSpent");
+
+          const timer = setInterval(() => {
+            secondsSpent++;
+            timeSpentElement.textContent = `${secondsSpent}s`;
+          }, 1000);
+
+          window.addEventListener("beforeunload", () => {
+            localStorage.setItem("lastVisitSeconds", secondsSpent.toString());
+          });
+
+        function CountTime() {
+        const inputValue = document.getElementById("date1").value;
+        const output = document.getElementById("CountedTimeOutput");
+        if (!inputValue) {
+          output.textContent = "Please select a date and time.";
+          return;
+        }
+        const inputDate = new Date(inputValue);
+        const now = new Date();
+        let diffMs = Math.abs(now - inputDate);
+        const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+        diffMs %= (1000 * 60 * 60 * 24);
+        const hours = Math.floor(diffMs / (1000 * 60 * 60));
+        diffMs %= (1000 * 60 * 60);
+        const minutes = Math.floor(diffMs / (1000 * 60));
+        diffMs %= (1000 * 60);
+        const seconds = Math.floor(diffMs / 1000);
+        output.textContent = `Time has passed since this date to today: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+      };
+    </script>
+  </body>
+</html>

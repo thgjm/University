@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task2</title>
+
+    <style>
+      header,
+      footer {
+        background-color: darkred;
+        color: white;
+        font-size: 12px;
+        position: fixed;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        height: 60px;
+      }
+
+      header {
+        top: 0;
+      }
+
+      footer {
+        bottom: 0;
+      }
+
+      .right,
+      .left,
+      .content {
+        background-color: salmon;
+        position: fixed;
+        top: 60px;
+        bottom: 60px;
+        width: 150px;
+        font-size: 12px;
+      }
+
+      .right {
+        right: 0;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .content {
+        background-color: red;
+        width: auto;
+        left: 150px;
+        right: 150px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>header</header>
+    <main>
+      <div class="left">left</div>
+      <div class="content">content</div>
+      <div class="right">right</div>
+    </main>
+    <footer>footer</footer>
+  </body>
+</html>

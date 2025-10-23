@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Я бачу, вас цікавить пітьма</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @font-face {
+        font-family: numberFont;
+        src: url(Ubuntu-Light.ttf);
+        font-weight: light;
+      }
+
+      html,
+      body {
+        font-family: "PT Sans", sans-serif;
+        font-size: 14px;
+        margin: 0;
+        line-height: 22px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #overlay {
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.4);
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+
+      header {
+        background-color: #ff006619;
+        padding: 15px 10px;
+        min-height: 140px;
+        width: 100%;
+      }
+
+      .header-left img {
+        height: clamp(90px, 7.6vw, 110px);
+        margin-right: 15px;
+        margin-top: -10px;
+        width: auto;
+      }
+
+      .company-name {
+        width: 170px;
+      }
+
+      .company-name h3 {
+        font-size: clamp(20px, 1.72vw, 25px);
+      }
+
+      .company-name p {
+        margin: 0;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .header-right {
+        text-align: right;
+        justify-items: center;
+        height: 110px;
+      }
+
+      .header-right p {
+        margin: 0;
+        color: black;
+      }
+
+      .PhoneNumber {
+        font-family: numberFont;
+        font-size: clamp(18px, 1.72vw, 24px);
+      }
+
+      .feedback {
+        font-size: 17px;
+      }
+
+      .menu {
+        background-color: #921c4b;
+      }
+
+      .menu ul,
+      .footer-middle ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+
+      .menu ul {
+        padding: 10px 0px;
+      }
+
+      li a,
+      li p {
+        color: white;
+        text-decoration: none;
+        font-size: 22px;
+        padding: 0;
+        margin: 0 5px;
+      }
+
+      .menu li a,
+      .menu li p {
+        font-size: clamp(18px, 3.5vw, 22px);
+      }
+
+      @media (max-width: 576px) {
+        .menu li a {
+          padding: 8px 0;
+          display: block;
+        }
+      }
+
+      .content {
+        background-color: #ff006619;
+      }
+
+      .left-block {
+        height: 320px;
+        width: 250px;
+        background-color: white;
+        overflow: hidden;
+      }
+
+      .left-block img {
+        height: 300px;
+      }
+
+      .content a {
+        text-decoration: none;
+        color: #921c4b;
+      }
+
+      .BookPrice {
+        color: #921c4b;
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .btn-buy {
+        padding: 5px;
+        background-color: #921c4b;
+        width: 50%;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: opacity 0.15s;
+        color: white;
+      }
+
+      .btn-buy:hover {
+        opacity: 0.8;
+      }
+
+      .btn-buy:active {
+        opacity: 0.7;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #000;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .info-item svg {
+        color: #921c4b;
+      }
+
+      .BookContent h2 {
+        margin-bottom: 20px;
+      }
+
+      .BookContent p {
+        margin-bottom: 15px;
+      }
+
+      hr {
+        color: #921c4b;
+      }
+
+      footer {
+        background-color: #921c4b;
+      }
+
+      .footer-right img {
+        height: 35px;
+        margin-right: 10px;
+      }
+
+      .footer-right p {
+        width: 150px;
+      }
+
+      .footer-middle li a {
+        text-decoration: underline;
+        font-size: 14px;
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .fadeOut {
+        animation: fadeOut 1s ease-in-out forwards;
+      }
+
+      .fadeIn {
+        animation: fadeIn 1s ease-in-out forwards;
+      }
+
+      #feedback {
+        position: absolute;
+        width: 90%;
+        max-width: 500px;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 20px 30px;
+        background-color: white;
+        z-index: 2;
+        overflow: hidden;
+        display: none;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 768px) {
+        #feedback {
+          top: 5%;
+          padding: 15px 20px;
+        }
+
+        #feedback h2 {
+          font-size: 20px;
+          margin-bottom: 20px;
+        }
+
+        label {
+          font-size: 14px;
+        }
+
+        input,
+        textarea {
+          font-size: 14px;
+          padding: 10px;
+        }
+
+        .btn-send {
+          font-size: 16px;
+          width: 100%;
+          padding: 10px;
+        }
+
+        #closefb {
+          font-size: 24px;
+          top: 5px;
+          right: 5px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #feedback {
+          padding: 10px 15px;
+        }
+
+        .btn-send {
+          font-size: 14px;
+          padding: 8px;
+        }
+      }
+
+      #feedback h2 {
+        margin-bottom: 30px;
+        color: #921c4b;
+        font-weight: bold;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+
+      input {
+        height: 50px;
+        padding: 5px;
+        margin-bottom: 15px;
+        width: 100%;
+        font-size: 16px;
+      }
+
+      textarea {
+        padding: 5px;
+        height: 150px;
+        width: 100%;
+      }
+
+      .btn-send {
+        display: block;
+        padding: 5px;
+        background-color: #921c4b;
+        width: 50%;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+
+      .btn-send:hover {
+        opacity: 0.8;
+      }
+
+      .btn-send:active {
+        opacity: 0.7;
+      }
+
+      #closefb {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #921c4b;
+        cursor: pointer;
+        text-decoration: none;
+        z-index: 3;
+      }
+
+      #closefb a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      input.error {
+        border: 1px solid #f5a6a6;
+        background-color: #fff0f0;
+        color: #c0392b;
+        font-style: italic;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div id="overlay"></div>
+      <header>
+        <div
+          class="container row d-flex align-items-center justify-content-between mx-auto h-100"
+        >
+          <div
+            class="header-left col-12 col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start"
+          >
+            <img
+              src="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png"
+              alt="Logo"
+            />
+            <div
+              class="company-name d-flex justify-content-center flex-column p-0 m-0"
+            >
+              <h3 class="p-0">Книжковий магазин</h3>
+              <p class="p-0">Найкращий книжковий магазин</p>
+            </div>
+          </div>
+          <div
+            class="header-right col-12 col-lg-6 d-flex flex-column justify-content-between align-items-center align-items-lg-end py-3"
+          >
+            <p class="PhoneNumber">+38(044) 123-45-67</p>
+            <p class="PhoneNumber">+38(044) 123-45-67</p>
+            <a href="#" class="feedback text-black" onclick="ShowFeedback()"
+              >Зворотний зв'язок</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <div class="menu">
+        <div class="container py-3">
+          <ul
+            class="d-none d-sm-flex flex-row justify-content-center flex-wrap gap-2"
+          >
+            <li><a href="#">Головна</a></li>
+            <li>
+              <p>|</p>
+            </li>
+            <li><a href="#">Каталог</a></li>
+            <li>
+              <p>|</p>
+            </li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li>
+              <p>|</p>
+            </li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li>
+              <p>|</p>
+            </li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+
+          <ul class="d-flex d-sm-none flex-column align-items-start gap-2 px-2">
+            <li><a href="#">Головна</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="content pt-5">
+        <div class="container h-100 mx-auto">
+          <div class="row mb-5 d-flex align-items-center mx-auto mt-2">
+            <div
+              class="col-12 col-md-6 col-lg-3 order-1 h-100 d-flex align-items-center justify-content-center"
+            >
+              <div
+                class="left-block d-flex align-items-center justify-content-center"
+              >
+                <img
+                  src="https://book-ye.com.ua/upload/iblock/bce/eff29e86_12de_11eb_813d_000c29ae1566_87938f31_f705_11ee_8199_005056857596.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div
+              class="col-12 col-md-12 col-lg-6 order-3 order-lg-2 h-100 mt-5 mt-md-5 mt-lg-0"
+            >
+              <div class="middle-block ms-4">
+                <h1 class="BookTitle"><b>Я бачу, вас цікавить пітьма</b></h1>
+                <p class="BookCode mt-4">Код товару: AB-22222222</p>
+                <p class="Rating fs-4 mt-4" style="color: orange">★★★★☆</p>
+                <div
+                  class="Reviews d-flex align-items-center justify-content-start"
+                  style="cursor: pointer"
+                >
+                  <i
+                    class="material-icons d-inline-block me-1"
+                    style="color: gray"
+                    >chat</i
+                  >
+                  <p class="m-0 p-0" style="color: gray">Відгуки: 168</p>
+                </div>
+
+                <div class="BookInfo row mt-3">
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <p>Автор: <a href="#">Ілларіон Павлюк</a></p>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <p>Видавництво: <a href="#">Видавництво Старого Лева</a></p>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <p>Рік видання: 2023</p>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <p>Мова: Українська</p>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <p>Обкладинка: Тверда</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-md-6 col-lg-3 order-2 order-lg-3 h-100 mt-4 mt-md-0 mt-lg-0"
+            >
+              <div class="right-block text-center">
+                <p class="mb-0" style="color: green">&#9745; Є в наявності</p>
+                <p class="BookPrice my-3">600 грн</p>
+                <div class="btn-buy mx-auto my-3">Замовити</div>
+                <a href="#" style="color: #921c4b">
+                  &#10084; Додати до списку бажаного</a
+                >
+                <hr />
+                <div
+                  class="info-list w-75 mx-auto text-center d-flex flex-column align-items-center"
+                >
+                  <div class="info-item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-truck"
+                      viewBox="0 0 16 16"
+                      style="color: #921c4b"
+                    >
+                      <path
+                        d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+                      />
+                    </svg>
+                    <a href="#">Доставка</a>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-wallet2"
+                      viewBox="0 0 16 16"
+                      style="color: #921c4b"
+                    >
+                      <path
+                        d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"
+                      />
+                    </svg>
+                    <a href="#">Оплата</a>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-geo-alt-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"
+                      />
+                    </svg>
+                    <a href="#">Адреса магазинів</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr class="my-5" />
+
+          <div class="BookContent mb-5">
+            <div class="container w-100">
+              <div class="Annotation">
+                <h2>Анотація "Я бачу, вас цікавить пітьма", Ілларіон Павлюк</h2>
+                <p>
+                  Київського кримінального психолога Андрія Гайстера
+                  відправляють консультантом у богом забуте селище Буськів Сад.
+                  Зимової ночі там зникла маленька дівчинка. А ще там водиться
+                  Звір — серійний маніяк, убивств якого тамтешні мешканці
+                  воліють не помічати... У цьому проклятому селищі, де все по
+                  колу і всі живуть життям, яке ненавидять, розслідування
+                  постійно заходить у глухий кут. Андрій вірить, що загублена
+                  дівчинка, попри все, жива і він її знайде. Але нікому, крім
+                  нього, це не потрібно.
+                </p>
+                <p>
+                  «Я бачу, вас цікавить пітьма» — історія про непробивну людську
+                  байдужість і пітьму всередині нас. Про чесність із собою й
+                  ціну, яку ми готові заплатити за забуття. Про гріхи, що
+                  матеріалізуються, і спокуту, дорожчу за спокій.
+                </p>
+              </div>
+
+              <hr class="my-5" />
+
+              <div class="AboutBook">
+                <h2>Про книжку "Я бачу, вас цікавить пітьма"</h2>
+
+                <p>
+                  Книги про зниклих людей ось уже багато років мають величезну
+                  популярність серед читачів. Вони приваблюють нас не лишень
+                  бурхливим і вигадливим сюжетом, що тримає в постійній напрузі,
+                  але й атмосферою химерної таємниці й загадки. Усе це змушує
+                  відчувати, як мурашки бігають шкірою, а тому хочеться читати
+                  ще й ще.
+                </p>
+                <p>
+                  «Я бачу, вас цікавить пітьма» українського автора Ілларіона
+                  Павлюка розповідає історію про Київського кримінального
+                  психолога, що вирушає в далеке, закинуте селище Буськів Сад.
+                  Одного разу там стається щось неймовірно жахливе: прямо
+                  посеред ночі зникає маленька беззахисна дівчинка. Однак згодом
+                  головний герой дізнається, що це далеко не перший моторошний
+                  випадок у селі. Річ у тому, що місцевістю блукає Звір –
+                  безпощадний серійний убивця.
+                </p>
+                <p>
+                  У книгах про маніяків і психопатів зло зазвичай втілене лишень
+                  в образі одного поганця або його банди. З цього погляду книга
+                  «Я бачу, вас цікавить пітьма» стає справжньою несподіванкою,
+                  адже негативним героєм тут виявляється не лишень вбивця, але й
+                  тамтешні мешканці. Вони щоразу пасивно заплющують очі на всі
+                  жахіття, що відбуваються в селі, і живуть далі, ненавидячи
+                  своє існування.
+                </p>
+                <p>
+                  Байдужість у літературі одна з найбільш болючих і близьких
+                  кожній людині тем. Саме у такій атмосфері кримінальному
+                  психологові Андрію доведеться розслідувати цю непросту справу,
+                  яка щоразу заганятиме його в кут. Та чи зуміє головний герой
+                  нарешті розв’язати вузол цієї моторошної таємниці і спіймати
+                  безжального маніяка?
+                </p>
+                <p>
+                  Надзвичайна легкість стилю разом із вигадливими поворотами
+                  сюжету змушують читати книгу на одному диханні. Це розповідь
+                  про близьку кожному з нас внутрішню темряву, про страх
+                  подивитися правді в очі, про гріхи і спокуту.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="text-white py-4">
+      <div
+        class="container row d-flex align-items-start justify-content-between mx-auto"
+      >
+        <div
+          class="footer-left col-sm-6 col-md-4 col-lg-4 d-flex justify-content-start align-items-center align-items-lg-start flex-column p-0 m-0"
+        >
+          <p class="mb-0">© 2024 "Книжковий магазин"</p>
+          <a href="#" class="text-white text-decoration-none"
+            >bookstore@gmail.com</a
+          >
+        </div>
+
+        <div
+          class="footer-middle col-sm-12 col-md-4 col-lg-4 order-2 order-sm-3 order-md-2 order-lg-2 d-flex justify-content-center align-items-center mt-5 mt-md-0 mt-lg-0"
+        >
+          <ul
+            class="d-flex flex-row flex-wrap justify-content-center flex-md-column flex-lg-column gap-3 text-center p-0 m-0"
+          >
+            <li><a href="#">Головна</a></li>
+            <li><a href="#">Каталог</a></li>
+            <li><a href="labChelushkinaPage2.html">Доставка та оплата</a></li>
+            <li><a href="#">Прайс-лист</a></li>
+            <li><a href="#">Контакти</a></li>
+          </ul>
+        </div>
+
+        <div
+          class="footer-right col-sm-6 col-md-4 col-lg-4 order-3 order-sm-2 d-flex align-items-center justify-content-center justify-content-lg-end mt-5 mt-sm-0 m-md-0 m-lg-0"
+        >
+          <img
+            src="https://www.iconpacks.net/icons/2/free-opened-book-icon-3163-thumb.png"
+            alt="Logo"
+          />
+          <p class="m-0">Розробниця сайту - Челушкіна Валерія</p>
+        </div>
+      </div>
+    </footer>
+
+    <div id="feedback">
+      <div class="container text-center w-100">
+        <h2>Зворотний зв'язок</h2>
+        <div id="closefb" onclick="HideFeedback()">&#215;</div>
+        <label for="YourName">Ваше ім'я *</label>
+        <input
+          type="text"
+          id="YourName"
+          name="YourName"
+          required
+          placeholder="Введіть ім'я"
+        />
+
+        <label for="YourPhone">Телефон *</label>
+        <input
+          type="tel"
+          id="YourPhone"
+          name="YourPhone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
+          required
+          placeholder="Введіть телефон"
+        />
+
+        <label for="YourEmail">Email *</label>
+        <input
+          type="email"
+          id="YourEmail"
+          name="YourEmail"
+          pattern=".+@example\.com"
+          required
+          placeholder="Введіть Email"
+        />
+
+        <label for="YourMessage">Повідомлення</label>
+        <textarea name="Message" id="YourMessage"></textarea>
+        <div class="btn-send w-50 mx-auto mt-3 fs-4 text-white">НАДІСЛАТИ</div>
+      </div>
+    </div>
+
+    <script>
+      document
+        .querySelectorAll("#feedback input[required]")
+        .forEach((field) => {
+          field.addEventListener("input", function () {
+            if (field.classList.contains("error")) {
+              field.classList.remove("error");
+              field.placeholder = field.getAttribute(
+                "data-original-placeholder"
+              );
+              field.style.color = "";
+              field.style.fontStyle = "";
+            }
+          });
+        });
+
+      document
+        .querySelector(".btn-send")
+        .addEventListener("click", function () {
+          const fields = document.querySelectorAll("#feedback input[required]");
+          let isValid = true;
+
+          fields.forEach((field) => {
+            if (!field.hasAttribute("data-original-placeholder")) {
+              field.setAttribute(
+                "data-original-placeholder",
+                field.placeholder
+              );
+            }
+
+            if (!field.value.trim()) {
+              field.classList.add("error");
+              field.value = "";
+              field.placeholder = "Поле є обов'язковим для заповнення";
+              field.style.color = "#c0392b";
+              field.style.fontStyle = "italic";
+              isValid = false;
+            }
+          });
+
+          if (isValid) {
+            alert("Форма заповнена!");
+            HideFeedback();
+          }
+        });
+
+      function ShowFeedback() {
+        let feedbackDiv = document.getElementById("feedback");
+        let overlayDiv = document.getElementById("overlay");
+
+        feedback.classList.remove("fadeOut");
+        feedback.classList.add("fadeIn");
+        feedback.style.display = "block";
+
+        overlay.classList.remove("fadeOut");
+        overlay.classList.add("fadeIn");
+        overlay.style.display = "block";
+      }
+
+      function HideFeedback() {
+        let feedback = document.getElementById("feedback");
+        let overlay = document.getElementById("overlay");
+
+        feedback.classList.remove("fadeIn");
+        feedback.classList.add("fadeOut");
+
+        overlay.classList.remove("fadeIn");
+        overlay.classList.add("fadeOut");
+
+        setTimeout(() => {
+          feedback.style.display = "none";
+          overlay.style.display = "none";
+
+          feedback.classList.remove("fadeOut");
+          overlay.classList.remove("fadeOut");
+
+          let fields = document.querySelectorAll(
+            "#feedback input, #feedback textarea"
+          );
+          fields.forEach((field) => {
+            field.value = "";
+            field.placeholder = field.getAttribute("data-placeholder") || "";
+            field.classList.remove("error");
+            field.style.color = "";
+            field.style.fontStyle = "";
+          });
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

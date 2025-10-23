@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>resources/sounds/Radar.mp3</file>
+        <file>resources/sounds/digital-alarm-clock-151920.mp3</file>
+        <file>resources/sounds/morning_flower.mp3</file>
+        <file>resources/sounds/sweet_wake_up.mp3</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>resources/images/img1.jpeg</file>
+        <file>resources/images/img2.jpg</file>
+        <file>resources/images/img3.jpg</file>
+        <file>resources/images/img4.jpg</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>resources/fonts/Orbitron/static/Orbitron-Regular.ttf</file>
+        <file>resources/fonts/Oxanium/static/Oxanium-Regular.ttf</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>resources/icons/timerIcon.png</file>
+        <file>resources/icons/trash-bin.png</file>
+    </qresource>
+</RCC>
