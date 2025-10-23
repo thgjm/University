@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1712815574 source:c:\users\thgjm\desktop\універ\програмування\семестр 2\лабораторні\lab3\main.cpp
+	<iostream>
+	<string>
+	<cctype>
+	<climits>
+

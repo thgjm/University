@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1715241110 source:c:\users\thgjm\desktop\універ\програмування\семестр 2\лабораторні\лабораторна 4\main.cpp
+	<iostream>
+	<vector>
+	<stack>
+	<fstream>
+
