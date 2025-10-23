@@ -1,0 +1,348 @@
+17.03
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ДЖОН ПОСТАЧАЄ ЛОНДОНСЬКІ ПОЄКТИ
+
+SELECT DISTINCT PNAME
+FROM P INNER JOIN (J INNER JOIN (S INNER JOIN SPJ ON SPJ.SN=S.SN) ON SPJ.JN=J.JN) ON SPJ.PN=P.PN
+WHERE SNAME='JOHN' AND J.CITY='LONDON';
+
+
+
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ДЖОН НЕ ПОСТАЧАЄ В ЛОНДОНСЬКІ ПРОЄКТИ
+
+SELECT DISTINCT PNAME
+FROM P
+WHERE PN NOT IN (SELECT PN
+                                  FROM SPJ
+                                  WHERE SN IN (SELECT SN
+                                                           FROM S
+                                                           WHERE SNAME='JOHN')
+                                   AND JN IN (SELECT JN
+                                                       FROM J
+                                                       WHERE CITY='LONDON'));
+
+
+
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ДЖОН ПОСТАЧАЄ В НЕЛОНДОНСЬКІ ПРОЄКТИ
+
+SELECT DISTINCT PNAME
+FROM P
+WHERE PN IN (SELECT PN
+                         FROM SPJ
+                         WHERE SN IN (SELECT SN
+                                                  FROM S
+                                                  WHERE SNAME='JOHN')
+                          AND JN IN (SELECT JN
+                                              FROM J
+                                              WHERE CITY<>'LONDON'));
+
+
+
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ПОСТАЧАЄ ЛИШЕ ДЖОН
+
+SELECT DISTINCT PNAME
+FROM P
+WHERE PN NOT IN (SELECT PN
+                                 FROM SPJ
+                                 WHERE SN IN (SELECT SN
+                                                          FROM S
+                                                          WHERE SNAME<>'JOHN'));
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ПОСТАЧАЮТЬСЯ В УСІ ЛОНДОНСЬКІ ПРОЄКТИ
+
+SELECT DISTINCT PNAME
+FROM P
+WHERE NOT EXISTS (SELECT *
+                                 FROM J
+                                 WHERE CITY='LONDON' AND JN NOT IN (SELECT JN
+                                                                                                       FROM SPJ
+                                                                                                       WHERE SPJ.PN=P.PN));
+
+ВИЗНАЧИТИ НАЗВИ ПРОЄКТІВ У ЯКІ ПОСТАЧАЮТЬСЯ ВСІ ТІ ДЕТАЛІ ЯКІ ПОСТАЧАЄ ДЖОН
+
+SELECT JNAME
+FROM J
+WHERE NOT EXISTS(SELECT *
+                                  FROM P
+                                  WHERE PN IN (SELECT PN
+                                                           FROM SPJ, S
+                                                           WHERE SPJ.SN=S.SN AND SNAME='JOHN')
+                                  AND PN NOT IN(SELECT PN
+                                                              FROM SPJ
+                                                              WHERE SPJ.JN=J.JN));
+
+
+ВИЗНАЧИТИ НАЗВИ ПРОЄКТІВ У ЯКІ ПОСТАЧАЮТЬСЯ ТІЛЬКИ ТІ ДЕТАЛІ ЯКІ ПОСТАЧАЄ ДЖОН
+
+SELECT JNAME
+FROM J
+WHERE NOT EXISTS (SELECT *
+                                   FROM P
+                                   WHERE PN NOT IN (SELECT PN
+                                                                    FROM SPJ, S
+                                                                    WHERE SPJ.SN=S.SN AND SNAME='JOHN')
+                                   AND PN IN(SELECT PN
+                                                       FROM SPJ
+                                                       WHERE SPJ.JN=J.JN));
+
+
+ВИЗНАЧИТИ НАЗВИ ДЕТАЛЕЙ ЯКІ ДЖОН ПОСТАЧАЄ В УСІ МІСТА ПРОЄКТІВ
+
+SELECT PNAME
+FROM P
+WHERE NOT EXISTS (SELECT *
+                                   FROM J
+                                   WHERE CITY NOT IN (SELECT J.CITY
+                                                                       FROM SPJ, J, S
+                                                                       WHERE SPJ.JN=J.JN AND SNAME='JOHN' AND SPJ.PN=P.PN));
+
+
+
+ДЗ(?):
+ВИЗНАЧИТИ КОЛЬОРИ ЯКІ ПОСТАЧАЮТЬСЯ ЛИШЕ В ЛОНДОНСЬКІ ПРОЄКТИ
+
+
+SELECT DISTINCT COLOR
+FROM P
+WHERE PN IN (SELECT PN
+                         FROM SPJ, J
+                         WHERE J.CITY='LONDON' AND SPJ.JN=J.JN)
+AND PN NOT IN(SELECT PN
+                            FROM SPJ, J
+                            WHERE J.CITY<>'LONDON' AND SPJ.JN=J.JN);
+
+
+ВИЗНАЧИТИ МІСТА УСІ ПРОЄКТИ З ЯКИХ ЗАБЕЗПЕЧУЄ ЛИШЕ ДЖОН
+
+
+SELECT CITY
+FROM J
+WHERE NOT EXISTS (
+    SELECT *
+    FROM SPJ
+    INNER JOIN S ON SPJ.SN = S.SN
+    WHERE SPJ.JN = J.JN AND SNAME <> 'JOHN'
+)
+AND EXISTS (
+    SELECT *
+    FROM SPJ
+    INNER JOIN S ON SPJ.SN = S.SN
+    WHERE SPJ.JN = J.JN AND SNAME = 'JOHN'
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+ДЗ.
+
+1. Визначити назви проєктів, у які лондонські постачальники не постачають червоні деталі.
+
+SELECT JNAME
+FROM J
+WHERE JN NOT IN (SELECT DISTINCT JN
+                                 FROM SPJ
+                                 WHERE PN IN (SELECT PN
+                                                          FROM P
+                                                          WHERE COLOR = 'RED')
+                                 AND SN IN (SELECT SN 
+                                                     FROM S 
+                                                     WHERE CITY = 'LONDON'));
+
+2. Визначити імена постачальників, які постачають всі червоні деталі.
+SELECT SNAME
+FROM S
+WHERE NOT EXISTS (SELECT *
+                                   FROM P
+                                   WHERE COLOR='RED'
+                                   AND PN NOT IN (SELECT PN
+                                                                FROM SPJ
+                                                                WHERE SPJ.SN=S.SN));
+
+3. Визначити міста, у проєкти з яких постачаються лише червоні деталі.
+
+SELECT DISTINCT CITY
+FROM J
+WHERE JN NOT IN (SELECT JN
+                                 FROM SPJ
+                                 WHERE PN IN (SELECT PN
+                                                          FROM P
+                                                          WHERE COLOR<>'RED'));
+
+4. Визначити міста, в усі проєкти з яких постачаються червоні деталі.
+
+SELECT DISTINCT CITY
+FROM J
+WHERE NOT EXISTS (SELECT *
+                                   FROM J JY
+                                   WHERE JY.CITY=J.CITY
+                                   AND
+                                   JY.JN NOT IN (SELECT JN
+                                                           FROM SPJ, P
+                                                           WHERE COLOR='RED' AND SPJ.JN=JY.JN AND SPJ.PN=P.PN));
+
+5. Визначити проєкти, у які постачаються всі ті деталі, які постачає Джон.
+
+SELECT *
+FROM J
+WHERE NOT EXISTS (SELECT * 
+                                   FROM P 
+                                   WHERE PN IN (SELECT PN 
+                                                            FROM SPJ, S 
+                                                            WHERE SNAME='JOHN' AND SPJ.SN=S.SN)
+                                   AND PN NOT IN (SELECT PN 
+                                                                FROM SPJ 
+                                                                WHERE SPJ.JN=J.JN));
+
+6. Для кожного проєкта визначити, скільки червоних деталей в нього постачається.
+
+SELECT J.JN, J.JNAME, COUNT(PN) AS X
+FROM (SELECT DISTINCT J.JN,J.JNAME,P.PN
+FROM (J LEFT JOIN SPJ ON J.JN=SPJ.JN) LEFT JOIN P ON SPJ.PN=P.PN
+WHERE P.COLOR = 'RED')  AS T
+GROUP BY J.JN, J.JNAME;
+
+
+ЛЕКЦІЇ.
+
+1) Визначити імена постачальників червоних деталей.
+
+SELECT DISTINCT SNAME
+FROM (S INNER JOIN SPJ ON S.SN=SPJ.SN) INNER JOIN P ON SPJ.PN=P.PN
+WHERE COLOR='RED';
+
+
+2) Визначити імена постачальників, які не постачають червоні деталі.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE SN NOT IN  (SELECT SN
+                         FROM SPJ 
+                         WHERE PN IN (SELECT PN
+                                                 FROM P
+                                                 WHERE COLOR='RED'));
+
+3) Визначити імена постачальників, які постачають не червоні деталі.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE SN IN  (SELECT SN
+                         FROM SPJ 
+                         WHERE PN IN (SELECT PN
+                                                 FROM P
+                                                 WHERE COLOR<>'RED'));
+
+4) Визначити імена постачальників, які постачають лише червоні деталі.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE SN NOT IN  (SELECT SN
+                         FROM SPJ 
+                         WHERE PN IN (SELECT PN
+                                                 FROM P
+                                                 WHERE COLOR<>'RED'));
+
+5) Визначити імена постачальників, які постачають всі деталі.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE NOT EXISTS(SELECT *
+                                FROM P
+                                WHERE PN NOT IN(SELECT PN
+                                                               FROM SPJ
+                                                               WHERE SPJ.SN=S.SN));
+
+6) Визначити імена постачальників, які постачають всі червоні деталі.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE NOT EXISTS(SELECT *
+                                FROM P
+                                WHERE COLOR='RED' AND PN NOT IN(SELECT PN
+                                                               FROM SPJ
+                                                               WHERE SPJ.SN=S.SN));
+
+7) Визначити імена постачальників, які постачають всі ті деталі, які постачає Jeff.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE NOT EXISTS(SELECT *
+                                FROM P
+                                WHERE PN IN(SELECT PN
+                                                       FROM SPJ,S
+                                                       WHERE SPJ.SN=S.SN AND SNAME='JEFF')
+                                             AND
+                                             PN NOT IN(SELECT PN
+                                                               FROM SPJ
+                                                               WHERE SPJ.SN=S.SN));
+
+8) Визначити імена постачальників, які постачають лише ті деталі, які постачає Jeff.
+
+SELECT DISTINCT SNAME
+FROM S
+WHERE NOT EXISTS(SELECT *
+                                FROM P
+                                WHERE PN NOT IN(SELECT PN
+                                                       FROM SPJ,S
+                                                       WHERE SPJ.SN=S.SN AND SNAME='JEFF')
+                                             AND
+                                             PN  IN(SELECT PN
+                                                               FROM SPJ
+                                                               WHERE SPJ.SN=S.SN));
+
+9) Визначити міста, усі постачальники з яких постачають червоні деталі.
+
+SELECT CITY
+FROM S
+WHERE NOT EXISTS (SELECT *
+                                 FROM S SY
+                                 WHERE SY.CITY=S.CITY AND SY.SN NOT IN ( SELECT SN
+                                                                                FROM SPJ,P
+                                                                                WHERE SPJ.SN=SY.SN AND
+                                                                                SPJ.PN=P.PN AND COLOR='RED'));
+
+10) Визначити імена постачальників, які постачають деталі всіх кольорів.
+
+SELECT SNAME
+FROM S
+WHERE NOT EXISTS (SELECT *
+                                 FROM P
+                                 WHERE COLOR NOT IN (SELECT COLOR
+                                                                 FROM SPJ,P
+                                                                 WHERE SPJ.SN=S.SN AND SPJ.PN=P.PN));
+
+11) Визначити імена постачальників, які забезпечують усі лондонські проєкти.
+
+SELECT *
+FROM SPJ
+WHERE PN IN (SELECT PN 
+                        FROM P
+                        WHERE COLOR='RED');
+-----------------------------------------------
+SELECT SNAME
+FROM S
+WHERE NOT EXISTS(SELECT *
+                                FROM J
+                                WHERE J.CITY='LONDON' AND JN NOT IN(SELECT JN
+                                                                                   FROM SPJR
+                                                                                   WHERE SPJR.SN=S.SN));
+
+12) Для кожного постачальника визначити, скільки деталей він постачає.
+
+SELECT S.SN, COUNT(PN) AS X
+FROM (SELECT DISTINCT SNAME,S.SN,PN
+            FROM S LEFT JOIN SPJ ON SPJ.SN=S.SN)  AS T
+GROUP BY S.SN;
+
+

@@ -1,0 +1,314 @@
+ІПС-21
+1. Для кожної деталі визначити середню вагу її поставок.
+
+SELECT P.PN, PNAME, AVG(P.WEIGHT * SPJ.QTY) AS X
+FROM P INNER JOIN SPJ ON P.PN=SPJ.PN
+GROUP BY P.PN, PNAME
+
+PN	PNAME	X
+P1	BOLT	450
+P2	BOLT	586,666666666667
+P4	BALKA	27125
+P5	CEGLA	10000
+
+2. Для кожної деталі визначити скільки постачальників її постачає.
+
+SELECT P.PN, PNAME, COUNT(SPJ.SN) AS X
+FROM (SELECT DISTINCT P.PN, SN, PNAME
+FROM P LEFT JOIN SPJ ON SPJ.PN=P.PN)
+GROUP BY P.PN, PNAME
+
+PN	PNAME	X
+P1	BOLT	2
+P2	BOLT	2
+P3	PANEL	0
+P4	BALKA	2
+P5	CEGLA	1
+
+3. Для кожної деталі визначити, постачальники зі скількох міст її постачають.
+
+SELECT P.PN, PNAME, COUNT(S.CITY) AS X
+FROM(SELECT DISTINCT P.PN, S.CITY, PNAME
+FROM (P LEFT JOIN SPJ ON SPJ.PN=P.PN) LEFT JOIN S ON SPJ.SN=S.SN)
+GROUP BY P.PN, PNAME
+
+PN	PNAME	X
+P1	BOLT	1
+P2	BOLT	1
+P3	PANEL	0
+P4	BALKA	2
+P5	CEGLA	1
+
+4. Визначити назви проектів, у які постачаються деталі не менш ніж 2 різних кольорів.
+
+SELECT J.JN, JNAME
+FROM (SELECT DISTINCT J.JN, JNAME, P.COLOR
+FROM (J LEFT JOIN SPJ ON SPJ.JN=J.JN) LEFT JOIN P ON SPJ.PN=P.PN)
+GROUP BY J.JN, JNAME
+HAVING COUNT(P.COLOR)>=2
+
+JN	JNAME
+J1	BRIDGE
+J2	TOWER
+J3	HOUSE
+
+5. Визначити в таблиці проектів міста, у які постачаються деталі не менш ніж 2 різних кольорів.
+
+SELECT J.CITY
+FROM (SELECT DISTINCT P.COLOR, J.CITY
+FROM (J INNER JOIN SPJ ON SPJ.JN=J.JN) INNER JOIN P ON SPJ.PN=P.PN)
+GROUP BY J.CITY
+HAVING COUNT(P.COLOR)>=2
+
+CITY
+LONDON
+PARIS
+
+6. Визначити назви проектів, у які постачається найбільша кількість деталей. (хз який з них правильний, обидва замальовували на змаганнях)
+
+SELECT DISTINCT J.JN, JNAME, COUNT(SPJ.PN) AS X
+FROM J LEFT JOIN SPJ ON SPJ.JN=J.JN
+GROUP BY J.JN, JNAME;
+
+АБО
+
+SELECT J.JN, JNAME, COUNT(SPJ.PN) AS X
+FROM (SELECT DISTINCT J.JN, JNAME, SPJ.PN
+FROM J LEFT JOIN SPJ ON SPJ.JN=J.JN)  AS [%$##@_Alias]
+GROUP BY J.JN, JNAME;
+------------------------------------------------
+SELECT JN, JNAME
+FROM 21_6_1
+WHERE X = (SELECT MAX(X) FROM 21_6_1);
+
+JN	JNAME
+J3	HOUSE
+
+АБО
+
+JN	JNAME
+J1	BRIDGE
+J2	TOWER
+J3	HOUSE
+
+7. Визначити кольори, що постачаються постачальниками з найбільшої кількості міст.
+
+SELECT COLOR, COUNT(S.CITY) AS X
+FROM (SELECT DISTINCT COLOR, S.CITY
+FROM (P INNER JOIN SPJ ON SPJ.PN=P.PN) INNER JOIN S ON S.SN=SPJ.SN)  
+GROUP BY COLOR;
+-------------------------------------------------------------------
+SELECT COLOR
+FROM 21_7_1
+WHERE X=(SELECT MAX(X) FROM 21_7_1);
+
+COLOR
+RED
+YELLOW
+
+8. Визначити назви проектів, у які серед всіх постачальників найбільшу кількість різних деталей постачає лондонський постачальник.
+
+SELECT J.JN, JNAME, S.SN, S.CITY, COUNT(PN) AS X
+FROM (SELECT DISTINCT J.JN, JNAME, S.SN, S.CITY, PN
+FROM (S INNER JOIN SPJ ON S.SN=SPJ.SN) INNER JOIN J ON J.JN=SPJ.JN)  AS T
+GROUP BY J.JN, JNAME, S.SN, S.CITY;
+--------------------------------------------------------------------------
+SELECT DISTINCT JNAME
+FROM A8
+WHERE CITY='LONDON' AND 
+X=(SELECT MAX(X) FROM A8 Y WHERE A8.JN=Y.JN);
+
+JNAME
+BRIDGE
+HOUSE
+TOWER
+
+9. Визначити імена постачальників, які в усі проекти постачають однакову кількість різних деталей.
+
+SELECT S.SN, SNAME, JN, COUNT(PN) AS X
+FROM S LEFT JOIN SPJ ON SPJ.SN=S.SN
+GROUP BY S.SN, SNAME, JN;
+---------------------------------------
+SELECT SNAME
+FROM (SELECT SNAME, X
+FROM A9
+GROUP BY SNAME, X)  AS T
+GROUP BY SNAME
+HAVING COUNT(*)=1;
+
+SNAME
+ADRIANO
+BRUCE
+JACK
+JAN
+JEFF
+JOHN
+NICOLAIS
+
+10. Визначити імена постачальників, які забезпечують усі лондонські проекти.
+
+SELECT S.SN, COUNT(J.JN) AS X
+FROM (SELECT DISTINCT S.SN, J.JN
+FROM (S INNER JOIN SPJ ON SPJ.SN=S.SN) INNER JOIN J ON J.JN=SPJ.JN
+WHERE J.CITY='LONDON')  AS T
+GROUP BY S.SN;
+--------------------------------------------------------------------
+SELECT SNAME
+FROM S INNER JOIN A10 ON A10.SN=S.SN
+WHERE X = 
+(SELECT COUNT(JN)
+FROM J
+WHERE CITY='LONDON');
+
+SNAME
+JOHN
+
+
+
+ІПС-22
+
+1. Для кожного проекту визначити сумарну вагу поставок у нього.
+
+SELECT J.JN, SUM(P.WEIGHT * SPJ.QTY) AS X
+FROM J INNER JOIN (P INNER JOIN SPJ ON SPJ.PN=P.PN) ON SPJ.JN=J.JN
+GROUP BY J.JN
+
+JN	X
+J1	1200
+J2	780
+J3	54930
+J4	10000
+
+2. Для кожного проекту визначити, скільки червоних різних деталей у нього постачається.
+
+SELECT J.JN, JNAME, COUNT(SPJ.PN) AS X
+FROM(SELECT DISTINCT J.JN, JNAME, SPJ.PN
+FROM (P INNER JOIN SPJ ON SPJ.PN=P.PN) INNER JOIN J ON SPJ.JN=J.JN
+WHERE P.COLOR = 'RED')
+GROUP BY J.JN, JNAME
+
+JN	JNAME	X
+J1	BRIDGE	1
+J2	TOWER	1
+J3	HOUSE	1
+J4	STABLE	1
+
+3. Для кожного постачальника визначити, проекти зі скількох міст він забезпечує
+
+SELECT S.SN, SNAME, COUNT(J.CITY) AS X
+FROM(SELECT DISTINCT S.SN, SNAME, J.CITY
+FROM (S LEFT JOIN SPJ ON SPJ.SN=S.SN) LEFT JOIN J ON SPJ.JN=J.JN)
+GROUP BY S.SN, SNAME
+
+SN	SNAME	X
+S1	JOHN	1
+S2	JEFF	1
+S3	ADRIANO	1
+S4	JAN	1
+S5	NICOLAIS	0
+S6	BRUCE	1
+S7	JACK	0
+
+4. Для кожного міста визначити, скільки різних деталей у ньому виробляється
+
+SELECT CITY, COUNT(PN) AS X
+FROM(SELECT DISTINCT CITY, PN
+FROM P)
+GROUP BY CITY
+
+CITY	X
+LONDON	2
+PARIS	2
+ROME	1
+
+5. Визначити такі кольори, що деталі цих кольорів постачаються найбільшою кількістю постачальників.
+
+SELECT P.COLOR, COUNT(SN) AS X
+FROM (SELECT DISTINCT P.COLOR, S.SN
+FROM (S INNER JOIN SPJ ON SPJ.SN=S.SN) INNER JOIN P ON P.PN=SPJ.PN)  AS T
+GROUP BY P.COLOR;
+--------------------------------------------------------------------------
+SELECT COLOR
+FROM Q5
+WHERE X =
+(SELECT MAX(X) FROM Q5);
+
+COLOR
+RED
+
+6. Для кожного міста проектів визначити постачальники зі скількох міст його забезпечують.
+
+SELECT J.CITY, COUNT (S.CITY) AS X
+FROM
+(SELECT DISTINCT J.CITY, S.CITY
+FROM (J INNER JOIN SPJ ON SPJ.JN=J.JN) INNER JOIN S ON S.SN=SPJ.SN)
+GROUP BY J.CITY
+
+CITY	X
+LONDON	2
+PARIS	1
+ROME	1
+
+7. Визначити в таблиці проектів міста, у які постачається найбільша кількість кольорів деталей.
+
+SELECT J.CITY, COUNT(COLOR) AS X
+FROM (SELECT DISTINCT J.CITY, COLOR
+FROM (J INNER JOIN SPJ ON SPJ.JN=J.JN) INNER JOIN P ON P.PN=SPJ.PN)  AS T
+GROUP BY J.CITY;
+--------------------------------------------------------------------------
+SELECT CITY
+FROM Q7
+WHERE X = 
+(SELECT MAX(X) FROM Q7);
+
+CITY
+LONDON
+
+8. Визначити назви проектів у які постачаються деталі всіх кольорів.
+
+SELECT JNAME, COUNT(COLOR) AS X
+FROM (SELECT DISTINCT JNAME, COLOR
+FROM (J INNER JOIN SPJ ON SPJ.JN=J.JN) INNER JOIN P ON P.PN=SPJ.PN)  AS TP
+GROUP BY JNAME;
+-------------------------------------------------------------------------
+SELECT JNAME
+FROM Q8
+WHERE X=(SELECT COUNT(T.COLOR)
+FROM (SELECT DISTINCT COLOR
+FROM P) AS T)
+
+-
+
+9. Визначити пари імен постачальників які хоча б один і той самий проект забезпечують однаковою кількістю різних деталей.
+
+SELECT S.SN, SNAME, J.JN, COUNT(PN) AS X
+FROM (SELECT DISTINCT S.SN, SNAME, J.JN, PN
+FROM (J INNER JOIN SPJ ON SPJ.JN=J.JN) INNER JOIN S ON SPJ.SN=S.SN)  AS T
+GROUP BY S.SN, SNAME, J.JN;
+-------------------------------------------------------------------------
+SELECT DISTINCT Q91.SNAME AS S1, Q92.SNAME AS S2
+FROM Q9 AS Q91 INNER JOIN Q9 AS Q92 ON (Q91.JN=Q92.JN AND Q91.X=Q92.X)
+WHERE Q91.SN<>Q92.SN AND Q91.SN < Q92.SN
+
+S1	S2
+JEFF	BRUCE
+
+10. Визначити назви деталей, які всі постачальники постачають в однакову кількість проектів.
+
+SELECT PNAME
+FROM P
+WHERE NOT EXISTS
+(SELECT S1.SN, S2.SN
+FROM S S1, S S2
+WHERE S1.SN<>S2.SN
+AND
+(SELECT COUNT(*)
+FROM SPJ
+WHERE SPJ.SN=S1.SN AND SPJ.PN=P.PN)
+<>
+(SELECT COUNT(*)
+FROM SPJ
+WHERE SPJ.SN=S2.SN AND SPJ.PN=P.PN))
+
+PNAME
+PANEL

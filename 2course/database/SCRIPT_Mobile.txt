@@ -1,0 +1,55 @@
+--Створення таблиці для користувачів--
+
+create table Users(
+phone_number char(10) not null,
+operator char(20),
+primary key(phone_number)
+)
+
+--Створення таблиці для журналу дзвінків--
+
+create table CallLog(
+    id int not null,
+    caller char(10),
+    receiver char(10),
+    call_start datetime,
+    duration int,
+    primary key(id),
+    foreign key(caller) references Users(phone_number),
+    foreign key(receiver) references Users(phone_number)
+);
+
+--Абонент не може подзвонити сам собі--
+
+alter table CallLog
+add constraint not_same_user
+check(caller<>receiver)
+
+--Якщо номери мають однакові перші 3 цифри, вони мають належати тому самому оператору--
+
+create trigger same_operator
+on Users
+after insert, update
+as
+if exists(
+select *
+from Users u1, Users u2
+where
+LEFT(u1.phone_number, 3)=LEFT(u2.phone_number, 3) and
+u1.operator<>u2.operator)
+rollback transaction
+
+--Різні розмови на одному телефоні перетинатися в часі не можуть--
+
+create trigger no_call_overlap
+on CallLog
+after insert, update
+as
+if exists(
+select *
+from CallLog c1, CallLog c2
+where
+(c1.caller=c2.caller or c1.receiver=c2.receiver or c1.caller=c2.receiver or c2.caller=c1.receiver) and
+c2.call_start>c1.call_start and c2.call_start<DATEADD(second, c1.duration, c1.call_start)
+)
+rollback transaction

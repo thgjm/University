@@ -1,0 +1,53 @@
+--Створення першої таблиці для літаків--
+
+create table Planes(
+id int not null,
+capacity int,
+brand char(20),
+release_year int,
+primary key(id))
+
+--Створення другої таблиці для рейсів--
+
+create table Flights(
+id int not null,
+departure char(30),
+arrival char(30),
+data_start datetime,
+data_end datetime,
+plane int,
+primary key(id),
+foreign key(plane) references Planes(id))
+
+--Місткість більше нуля--
+
+alter table Planes
+add constraint capacity_not_null
+check(capacity>0)
+
+--Обмеження на рік випуску--
+
+alter table Planes
+add constraint release_year_constraint
+check(release_year<=year(getdate()) and release_year>=1950)
+
+--Виліт повинен відбуватись раніше за приліт--
+
+alter table Flights
+add constraint datetime_check
+check(data_start<data_end)
+
+--Трігер для уникнення перетину рейсів для одного літака--
+
+create trigger not_same_plane
+on Flights
+after insert, update
+as
+if exists(select *
+from Flights, inserted
+where
+Flights.plane = inserted.plane 
+and Flights.id <> inserted.id
+and Flights.data_start < inserted.data_end
+and inserted.data_start < Flights.data_end)
+rollback transaction

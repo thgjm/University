@@ -1,0 +1,100 @@
+--Створюємо таблицю потягів--
+
+create table Trains(
+number int not null primary key,
+type char(20))
+
+--Існує 4 види потягів: дений, нічний, експрес, нічний експрес--
+
+alter table Trains
+add constraint possible_types
+check(type='day' or type='night' or type='express' or type='night express')
+
+--Номер потягу більше нуля--
+
+alter table Trains
+add constraint train_num
+check(number>0)
+
+--Створюємо таблицю зупинок--
+
+create table Stops(
+id int not null primary key, 
+train int foreign key references Trains(number),
+station char(50),
+arrival datetime,
+departure datetime
+)
+
+--Час прибуття раніший за час відбуття на станцію--
+
+alter table Stops
+add constraint correct_time
+check(arrival<departure)
+
+--Унікальний індекс потяг-станція--
+
+create unique index Train_Station
+on Stops(train, station);
+
+--Повинна існувати 1 початкова станція--
+
+create trigger start_station
+on Stops
+after insert, update
+as
+if exists(select train
+from Stops
+where arrival is null and departure is not null
+group by train
+having count(*)<>1)
+rollback transaction
+
+--Повинна існувати 1 кінцева станція--
+
+create trigger end_station
+on Stops
+after insert, update
+as
+if exists(select train
+from Stops
+where arrival is not null and departure is null
+group by train
+having count(*)<>1)
+rollback transaction
+
+--Відбуття з початкової станції повинно бути меншим за прибуття до кінцевої--
+
+create trigger check_start_end_stations
+on Stops
+after insert, update
+as
+if exists(select *
+from Stops s1, Stops s2
+where
+s1.train=s2.train and
+s1.arrival is null and s1.departure is not null
+and s2.arrival is not null and s2.departure is null
+and s1.departure >= s2.arrival)
+rollback transaction
+
+--Створюємо тригер, щоб зупинки не перетинались (в межах 1 потягу), перебираючи всі варіанти--
+
+create trigger no_overlap
+on Stops
+after insert, update
+as
+if exists (select *
+from Stops s1, Stops s2
+where s1.train = s2.train and s1.station <> s2.station
+and ((s1.arrival is not null and s1.departure is not null and
+s2.arrival is not null and s2.departure is not null and
+s1.arrival < s2.departure and s2.arrival < s1.departure)
+or (s1.arrival is null and s1.departure is not null and
+s2.arrival is not null and s2.departure is not null and
+s1.departure > s2.arrival and s2.arrival < s1.departure)
+or(s1.arrival is not null and s1.departure is null and
+s2.arrival is not null and s2.departure is not null and
+s2.departure > s1.arrival and s1.arrival < s2.departure)
+))
+rollback transaction
