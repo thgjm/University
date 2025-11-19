@@ -93,13 +93,13 @@ Y_GrNew = A @ X
 Y_GrNew = np.clip(Y_GrNew, 0, 255)
 plt.figure()
 plt.imshow(Y_GrNew.astype(np.uint8), cmap='gray')
-plt.title("Зображення Y за формулою Грівеля.")
+plt.title("Зображення Y за формулою Гревіля.")
 
 # Алгоритм, заснований на означеннi Мура-Пенроуза.
 def MoorePenroseInverse(A):
     m, n = A.shape
     epsilon = 0.00000001
-    delta = 10
+    delta = 5
     # Нульова ітерація
     Apinv_prev = A.T @ np.linalg.inv(A @ A.T +
                                      (delta * delta) * np.identity(m))
