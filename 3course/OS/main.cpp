@@ -1,3 +1,14 @@
+/*
+Communication: Named Pipes
+
+Processing approach: Multiplexing
+
+Operations: Concatenation
+            If possible, the sum of numbers
+*/
+
+
+
 #include <windows.h>
 #include <iostream>
 #include <string>
