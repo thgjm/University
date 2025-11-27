@@ -168,7 +168,7 @@ def simplified_spline_formulas(x, a, b, c, d):
         if expr_sorted_str.startswith("+"):
             expr_sorted_str = expr_sorted_str[1:].strip()
 
-        interval = f"{x[i]:.6f} <= x <= {x[i+1]:.6f}"
+        interval = f"{x[i]:.6f} < x <= {x[i+1]:.6f}"
         formulas.append((expr_sorted_str, interval))
 
     return formulas
@@ -248,7 +248,7 @@ def main():
     axs[1].grid(True)
     axs[1].legend()
 
-    plt.suptitle("Інтерполяція Ньютона, сплайни та збільшення біля кореня", fontsize=14)
+    plt.suptitle("Інтерполяція Ньютона, сплайни та збільшення", fontsize=14)
     plt.show()
     
 main()
