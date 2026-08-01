@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\University\\3course\\databases\\Tourism\\Tourism.csproj": {}
+    "D:\\University\\3course\\1sem\\databases\\Tourism\\Tourism.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\University\\3course\\databases\\Tourism\\Tourism.csproj": {
+    "D:\\University\\3course\\1sem\\databases\\Tourism\\Tourism.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\University\\3course\\databases\\Tourism\\Tourism.csproj",
+        "projectUniqueName": "D:\\University\\3course\\1sem\\databases\\Tourism\\Tourism.csproj",
         "projectName": "Tourism",
-        "projectPath": "C:\\Users\\User\\Desktop\\University\\3course\\databases\\Tourism\\Tourism.csproj",
+        "projectPath": "D:\\University\\3course\\1sem\\databases\\Tourism\\Tourism.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\University\\3course\\databases\\Tourism\\obj\\",
+        "outputPath": "D:\\University\\3course\\1sem\\databases\\Tourism\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
